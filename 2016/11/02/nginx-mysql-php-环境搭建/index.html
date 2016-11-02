@@ -116,6 +116,8 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
+				    
 				    <li><a href="/categories/web/" class="animsition-link">web<small>(1)</small></a></li>
 				    
 				</ul>
@@ -198,51 +200,51 @@
         <div class="col-md-8 col-md-offset-2">
       		<p>一直安装lnmp环境乱糟糟的,这次找到了一个还不错的方法,特此记录。</p>
 <blockquote>
-<p>原文地址传送门  <a href="https://segmentfault.com/a/1190000004123048" title="点击开始传送" target="_blank" rel="external">编译安装nginx1.9.7+php7.0.0服务器环境</a></p>
+<p>参考地址  <a href="https://segmentfault.com/a/1190000004123048" title="点击开始传送" target="_blank" rel="external"><code>编译安装nginx1.9.7+php7.0.0服务器环境</code></a></p>
 </blockquote>
 <h1 id="我的系统"><a href="#我的系统" class="headerlink" title="我的系统"></a>我的系统</h1><hr>
-<pre><code># cat /etc/redhat-release
+<pre><code>shell&gt; cat /etc/redhat-release
 CentOS Linux release 7.2.1511 (Core)
 </code></pre><p> <br></p>
 <h1 id="nginx的安装"><a href="#nginx的安装" class="headerlink" title="nginx的安装"></a>nginx的安装</h1><hr>
 <h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>lnmp环境搭建依赖安装必不可少,不然就是各种麻烦,所以一口气安装好吧0.0</p>
-<pre><code>$ yum -y install gcc gcc-c++ autoconf automake libtool make cmake
-$ yum -y install zlib zlib-devel openssl openssl-devel pcre-devel
+<pre><code>shell&gt; yum -y install gcc gcc-c++ autoconf automake libtool make cmake
+shell&gt; yum -y install zlib zlib-devel openssl openssl-devel pcre-devel
 </code></pre><p>zlib: 为nginx提供gzip模块，需要zlib库支持</p>
-<h2 id="创建nginx用户组"><a href="#创建nginx用户组" class="headerlink" title="创建nginx用户组"></a>创建nginx用户组</h2><pre><code>$ groupadd nginx
-$ useradd -g nginx -M nginx
+<h2 id="创建nginx用户组"><a href="#创建nginx用户组" class="headerlink" title="创建nginx用户组"></a>创建nginx用户组</h2><pre><code>shell&gt; groupadd nginx
+shell&gt; useradd -g nginx -M nginx
 </code></pre><p><code>-g为用户指定组 -M不自动生成home目录,毕竟我们不是为了创建一个用户</code></p>
-<pre><code>vi /etc/passwd
+<pre><code>shell&gt; vi /etc/passwd
 </code></pre><p>找到nginx，将后面的<code>/bin/bash</code>改为<code>/sbin/nologin</code>就不让ssh登录啦。</p>
 <h2 id="编译安装nginx"><a href="#编译安装nginx" class="headerlink" title="编译安装nginx"></a>编译安装nginx</h2><p>进入nginx官网啦,找到最新版本的tar.gz包的链接,执行以下动作。</p>
-<pre><code>$ wget http://xxxxxxxxxx/nginx1.7.x.tar.gz
-$ tar zxvf nginx1.7.x.tar.gz
-$ cd nginx1.7.x
+<pre><code>shell&gt; wget http://xxxxxxxxxx/nginx1.7.x.tar.gz
+shell&gt; tar zxvf nginx1.7.x.tar.gz
+shell&gt; cd nginx1.7.x
 </code></pre><p>执行./configure,把软件安装到/usr/local目录,用conf、etc、sbin、run等进行归类管理。</p>
-<pre><code>$ ./configure --prefix=/usr/local/nginx \
+<pre><code>shell&gt; ./configure --prefix=/usr/local/nginx \
 --pid-path=/usr/local/nginx/run/nginx.pid \
 --with-http_ssl_module \
 --user=nginx \
- --group=nginx \
+--group=nginx \
 --with-pcre \
 --without-mail_pop3_module \
 --without-mail_imap_module \
 --without-mail_smtp_module
 </code></pre><p><code>最后三项为禁用nginx作为邮件代理服务器,建议想搭建邮件服务器的通知去阅读nginx搭建邮件服务器的教程。</code><br>检查./configure结果,看看有没有报错,有没有缺少模块,如果一切OK，那么往下继续，如果感觉不对，可以用./configure –help认真阅读一下。</p>
-<pre><code>$ make
-$ make install
+<pre><code>shell&gt; make
+shell&gt; make install
 </code></pre><p>表急,安装完了,但是nginx还没有运行</p>
-<pre><code>$ cd /usr/local/nginx
-$ ls
-$ sbin/nginx
+<pre><code>shell&gt; cd /usr/local/nginx
+shell&gt; ls
+shell&gt; sbin/nginx
 </code></pre><p> <br></p>
 <h1 id="php7的编译安装"><a href="#php7的编译安装" class="headerlink" title="php7的编译安装"></a>php7的编译安装</h1><hr>
-<h2 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h2><pre><code>$ yum -y install libxml2 libxml2-devel openssl openssl-devel curl-devel libjpeg-devel libpng-devel freetype-devel libmcrypt-devel
-</code></pre><h2 id="编译安装php7"><a href="#编译安装php7" class="headerlink" title="编译安装php7"></a>编译安装php7</h2><pre><code>$ wget http://am1.php.net/get/php-7.0.0.tar.gz/from/this/mirror
-$ tar zvxf php-7.0.0.tar.gz
-$ cd php-7.0.0
+<h2 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h2><pre><code>shell&gt; yum -y install libxml2 libxml2-devel openssl openssl-devel curl-devel libjpeg-devel libpng-devel freetype-devel libmcrypt-devel
+</code></pre><h2 id="编译安装php7"><a href="#编译安装php7" class="headerlink" title="编译安装php7"></a>编译安装php7</h2><pre><code>shell&gt; wget http://am1.php.net/get/php-7.0.0.tar.gz/from/this/mirror
+shell&gt; tar zvxf php-7.0.0.tar.gz
+shell&gt; cd php-7.0.0
 </code></pre><p>接下来要进行编译前的配置,我们需要提供php-fpm相关参数</p>
-<pre><code>$ ./configure --prefix=/usr/local/php7 \
+<pre><code>shell&gt; ./configure --prefix=/usr/local/php7 \
 --with-config-file-path=/usr/local/php7/etc \
 --with-config-file-scan-dir=/usr/local/php7/etc/php.d \
 --with-mcrypt=/usr/include \
@@ -277,23 +279,23 @@ $ cd php-7.0.0
 --with-freetype-dir \
 --enable-opcache
 </code></pre><p>配置无误后执行:</p>
-<pre><code>$ make
-$ make install
+<pre><code>shell&gt; make
+shell&gt; make install
 </code></pre><p>如果安装成功，那么php7的安装就OK了。</p>
 <h2 id="调整php配置"><a href="#调整php配置" class="headerlink" title="调整php配置"></a>调整php配置</h2><p>安装好后发现/usr/local/php7/etc下面没有php.ini文件,去php7的源码安装包里找吧,那里有着php7全部的宝藏</p>
-<pre><code>$ cd /usr/src/php-7.0.0/
-$ ls
+<pre><code>shell&gt; cd /usr/src/php-7.0.0/
+shell&gt; ls
 </code></pre><p>惯例你会发现有俩个php.ini-xxx的文件,一个是产品模式,一个是开发模式</p>
-<pre><code>$ cp php.ini-production /usr/local/php7/etc/php.ini
-$ vi /usr/local/php7/etc/php.ini
+<pre><code>shell&gt; cp php.ini-production /usr/local/php7/etc/php.ini
+shell&gt; vi /usr/local/php7/etc/php.ini
 </code></pre><p>vi进行自己所需的其他配置。</p>
 <h2 id="启用php-fpm服务"><a href="#启用php-fpm服务" class="headerlink" title="启用php-fpm服务"></a>启用php-fpm服务</h2><p>上面我们在编译php7的时候，已经将fpm模块编译了，那么接下来，我们要启用php-fpm。但是默认情况下它的配置文件和服务都没有启用，所以要我们自己来搞定。</p>
-<h3 id="搞定配置文件"><a href="#搞定配置文件" class="headerlink" title="搞定配置文件"></a>搞定配置文件</h3><pre><code>$ cd /usr/local/php7/etc
-$ mv php-fpm.conf.default php-fpm.conf
-$ mv php-fpm.d/www.conf.default php-fpm.d/www.conf
+<h3 id="搞定配置文件"><a href="#搞定配置文件" class="headerlink" title="搞定配置文件"></a>搞定配置文件</h3><pre><code>shell&gt; cd /usr/local/php7/etc
+shell&gt; mv php-fpm.conf.default php-fpm.conf
+shell&gt; mv php-fpm.d/www.conf.default php-fpm.d/www.conf
 </code></pre><p>php-fpm 的开启我直接通过<code>systemctl start php-fpm</code> 开启了0.0。<br>可以通过<code>ps -ef | grep php-fpm</code>来查看php-fpm的运行状态。</p>
 <h2 id="nginx和php-fpm配置"><a href="#nginx和php-fpm配置" class="headerlink" title="nginx和php-fpm配置"></a>nginx和php-fpm配置</h2><p>php-fpm走的是9000端口,外网是无法访问的,我们需要在nginx的配置文件中增加代理的规则，即可让用户在访问80端口，请求php的时候，交由后端的fpm去执行。</p>
-<pre><code>$ vi /usr/local/nginx/conf/nginx.conf
+<pre><code>shell&gt; vi /usr/local/nginx/conf/nginx.conf
 </code></pre><p>应该在nginx.conf已经有例子了,如下:</p>
 <pre><code>#location ~ \.php$ {
   #   root           html;
@@ -311,12 +313,12 @@ $ mv php-fpm.d/www.conf.default php-fpm.d/www.conf
     include        fastcgi_params;
 }
 </code></pre><p>这样就OK了，重新载入nginx配置。</p>
-<pre><code>/usr/local/nginx/sbin/nginx -s reload
+<pre><code>shell&gt; /usr/local/nginx/sbin/nginx -s reload
 </code></pre><p>到/usr/local/nginx/html去写个文件测试一下吧。<br> <br></p>
 <h1 id="Mysql的安装"><a href="#Mysql的安装" class="headerlink" title="Mysql的安装"></a>Mysql的安装</h1><hr>
-<p>在下安装了mysql5.7  官网描述的挺详细。<br>各位看官请看准自己系统  <a href="http://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html</a></p>
-<h2 id="给yum添加mysql源"><a href="#给yum添加mysql源" class="headerlink" title="给yum添加mysql源"></a>给yum添加mysql源</h2><p>请进入官网寻找自己所需版本</p>
-<h3 id="下载源-传送到官网进行选择"><a href="#下载源-传送到官网进行选择" class="headerlink" title="下载源  传送到官网进行选择"></a>下载源  <a href="http://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="external">传送到官网进行选择</a></h3><pre><code>shell&gt; wget http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+<p>在下安装了mysql5.7  官网描述的挺详细。<br>各位看官请看准自己系统<a href="http://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" title="点击传送" target="_blank" rel="external"><code>官网安装说明传送们</code></a></p>
+<h3 id="官方源"><a href="#官方源" class="headerlink" title="官方源"></a>官方源</h3><p>请进入官网寻找自己版本所需的源,<a href="http://dev.mysql.com/downloads/repo/yum/" title="点击传送" target="_blank" rel="external"><code>官网源传送门</code></a><br>由于在下是centos7.2,内核是Red Hat Enterprise Linux 7,所以选择了<code>mysql57-community-release-el7-9.noarch.rpm</code>,以下以此示例</p>
+<h3 id="下载源"><a href="#下载源" class="headerlink" title="下载源"></a>下载源</h3><pre><code>shell&gt; wget http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
 </code></pre><h3 id="安装源"><a href="#安装源" class="headerlink" title="安装源"></a>安装源</h3><pre><code>shell&gt; sudo yum localinstall mysql57-community-release-el7-9.noarch.rpm
 </code></pre><h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><pre><code>shell&gt; yum repolist enabled | grep &quot;mysql.*-community.*&quot;
 </code></pre><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>shell&gt; sudo yum install mysql-community-server

@@ -116,6 +116,8 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
+				    
 				    <li><a href="/categories/web/" class="animsition-link">web<small>(1)</small></a></li>
 				    
 				</ul>
@@ -234,15 +236,15 @@
                       
                         一直安装lnmp环境乱糟糟的,这次找到了一个还不错的方法,特此记录。
 
-原文地址传送门  编译安装nginx1.9.7+php7.0.0服务器环境
+参考地址  编译安装nginx1.9.7+php7.0.0服务器环境
 
 我的系统
-# cat /etc/redhat-release
+shell&gt; cat /etc/redhat-release
 CentOS Linux release 7.2.1511 (Core)
  
 nginx的安装
 依赖lnmp环境搭建依赖安装必不可少,不然就是各种麻烦,所以一口气安装好吧0.0
-$ yum -y install gcc gcc-
+shell&gt; yum -y ins
                       
                     </p>
                     
@@ -316,9 +318,13 @@ This is
                 <div class="col-md-8">
                     <p>
                       
-                        我的系统# cat /etc/redhat-release
+                        0.0苹果的IOS和mac系统在升级之后都移除了pptp,所以在下以前搭建的pptp就派不上用场了。啊,伟大的墙,只能含泪重新搭建。
+  
+准备工作服务器及系统作者使用的是阿里云ECS香港服务器
+shell&gt; cat /etc/redhat-release
 CentOS Linux release 7.2.1511 (Core)
-
+更新yum源shell&gt; yum update
+安装epel源shell&gt; yum ins
                       
                     </p>
                     

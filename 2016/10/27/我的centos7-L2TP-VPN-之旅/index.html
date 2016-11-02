@@ -116,6 +116,8 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
+				    
 				    <li><a href="/categories/web/" class="animsition-link">web<small>(1)</small></a></li>
 				    
 				</ul>
@@ -196,9 +198,285 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h2 id="我的系统"><a href="#我的系统" class="headerlink" title="我的系统"></a>我的系统</h2><pre><code># cat /etc/redhat-release
+      		<p>0.0苹果的IOS和mac系统在升级之后都移除了pptp,所以在下以前搭建的pptp就派不上用场了。啊,伟大的墙,只能含泪重新搭建。</p>
+<p>  <br></p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h3 id="服务器及系统"><a href="#服务器及系统" class="headerlink" title="服务器及系统"></a>服务器及系统</h3><p>作者使用的是阿里云ECS香港服务器</p>
+<pre><code>shell&gt; cat /etc/redhat-release
 CentOS Linux release 7.2.1511 (Core)
-</code></pre>
+</code></pre><h3 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h3><pre><code>shell&gt; yum update
+</code></pre><h3 id="安装epel源"><a href="#安装epel源" class="headerlink" title="安装epel源"></a>安装epel源</h3><pre><code>shell&gt; yum install epel-release -y
+</code></pre><h3 id="依赖组件"><a href="#依赖组件" class="headerlink" title="依赖组件"></a>依赖组件</h3><pre><code>shell&gt; yum install -y openswan ppp pptpd xl2tpd wget
+</code></pre><p>  <br></p>
+<h1 id="正式配置"><a href="#正式配置" class="headerlink" title="正式配置"></a>正式配置</h1><h3 id="配置ipsec"><a href="#配置ipsec" class="headerlink" title="配置ipsec"></a>配置ipsec</h3><pre><code>shell&gt; vim /etc/ipsec.conf
+</code></pre><p>修改为如下内容</p>
+<pre><code># /etc/ipsec.conf - Libreswan IPsec configuration file
+
+# This file:  /etc/ipsec.conf
+#
+# Enable when using this configuration file with openswan instead of libreswan
+#version 2
+#
+# Manual:     ipsec.conf.5
+
+# basic configuration
+config setup
+    # NAT-TRAVERSAL support, see README.NAT-Traversal
+    nat_traversal=yes
+    # exclude networks used on server side by adding %v4:!a.b.c.0/24
+    virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12
+    # OE is now off by default. Uncomment and change to on, to enable.
+    oe=off
+    # which IPsec stack to use. auto will try netkey, then klips then mast
+    protostack=netkey
+    force_keepalive=yes
+    keep_alive=1800
+
+conn L2TP-PSK-NAT
+    rightsubnet=vhost:%priv
+    also=L2TP-PSK-noNAT
+
+conn L2TP-PSK-noNAT
+    authby=secret
+    pfs=no
+    auto=add
+    keyingtries=3
+    rekey=no
+    ikelifetime=8h
+    keylife=1h
+    type=transport
+    left=你的外网IP 例 47.90.*.**
+    leftid=你的外网IP
+    leftprotoport=17/1701
+    right=%any
+    rightprotoport=17/%any
+    dpddelay=40
+    dpdtimeout=130
+    dpdaction=clear
+    ike=3des-sha1,aes-sha1,aes256-sha1,aes256-sha2_256
+    phase2alg=3des-sha1,aes-sha1,aes256-sha1,aes256-sha2_256
+    sha2-truncbug=yes
+# For example connections, see your distribution&apos;s documentation directory,
+# or the documentation which could be located at
+#  /usr/share/docs/libreswan-3.*/ or look at https://www.libreswan.org/
+#
+# There is also a lot of information in the manual page, &quot;man ipsec.conf&quot;
+
+# You may put your configuration (.conf) file in the &quot;/etc/ipsec.d/&quot; directory
+# by uncommenting this line
+#include /etc/ipsec.d/*.conf
+</code></pre><p><code>leftid</code>和<code>left</code>的内容填写上你的<code>外网IP地址</code></p>
+<h3 id="配置公钥PSK"><a href="#配置公钥PSK" class="headerlink" title="配置公钥PSK"></a>配置公钥PSK</h3><pre><code>shell&gt; vim /etc/ipsec.secrets
+</code></pre><p>改为如下</p>
+<pre><code>#include /etc/ipsec.d/*.secrets
+yourIP %any: PSK &quot;your pre-shared-key&quot;
+</code></pre><p>其中<code>yourIP</code>是你的<code>外网ip地址</code></p>
+<h3 id="配置pptp"><a href="#配置pptp" class="headerlink" title="配置pptp"></a>配置pptp</h3><pre><code>shell&gt; vim /etc/pptpd.conf
+</code></pre><p>改为如下</p>
+<pre><code>#ppp /usr/sbin/pppd
+option /etc/ppp/options.pptpd
+#debug
+# stimeout 10
+#noipparam
+logwtmp
+#vrf test
+#bcrelay eth1
+#delegate
+#connections 100
+localip 10.0.1.2
+remoteip 10.0.1.50-245
+</code></pre><p>localip为vpn所持有的虚拟网段的ip，这里设置localip为2，把1留给了xl2tpd。<br>remoteip为vpn所提供出去的虚拟网段的ip。</p>
+<h3 id="配置xl2tp"><a href="#配置xl2tp" class="headerlink" title="配置xl2tp"></a>配置xl2tp</h3><pre><code>shell&gt; vim /etc/xl2tpd/xl2tpd.conf
+</code></pre><p>改为如下内容</p>
+<pre><code>;
+; This is a minimal sample xl2tpd configuration file for use
+; with L2TP over IPsec.
+;
+; The idea is to provide an L2TP daemon to which remote Windows L2TP/IPsec
+; clients connect. In this example, the internal (protected) network
+; is 192.168.1.0/24.  A special IP range within this network is reserved
+; for the remote clients: 192.168.1.128/25
+; (i.e. 192.168.1.128 ... 192.168.1.254)
+;
+; The listen-addr parameter can be used if you want to bind the L2TP daemon
+; to a specific IP address instead of to all interfaces. For instance,
+; you could bind it to the interface of the internal LAN (e.g. 192.168.1.98
+; in the example below). Yet another IP address (local ip, e.g. 192.168.1.99)
+; will be used by xl2tpd as its address on pppX interfaces.
+[global]
+; ipsec saref = yes
+listen-addr = 47.90.*.**
+auth file = /etc/ppp/chap-secrets
+port = 1701
+[lns default]
+ip range = 10.0.1.50-10.0.1.245
+local ip = 10.0.1.1
+refuse chap = yes
+refuse pap = yes
+require authentication = yes
+name = L2TPVPN
+ppp debug = yes
+pppoptfile = /etc/ppp/options.xl2tpd
+length bit = yes
+</code></pre><p>其中<code>listen-addr</code>填写的是你的外网ip;<br>ip range为所指定的VPN对外提供的虚拟IP的范围;<br>local ip为VPN所持有的为l2tp使用的虚拟IP。</p>
+<h3 id="配置pptp的参数"><a href="#配置pptp的参数" class="headerlink" title="配置pptp的参数"></a>配置pptp的参数</h3><pre><code>shell&gt; /etc/ppp/options.pptpd
+</code></pre><p>内容改为如下</p>
+<pre><code># Authentication
+name pptpd
+#chapms-strip-domain
+
+# Encryption
+# BSD licensed ppp-2.4.2 upstream with MPPE only, kernel module ppp_mppe.o
+# {{{
+    refuse-pap
+    refuse-chap
+    refuse-mschap
+    # Require the peer to authenticate itself using MS-CHAPv2 [Microsoft
+    # Challenge Handshake Authentication Protocol, Version 2] authentication.
+    require-mschap-v2
+    # Require MPPE 128-bit encryption
+    # (note that MPPE requires the use of MSCHAP-V2 during authentication)
+    require-mppe-128
+    # }}}
+
+# OpenSSL licensed ppp-2.4.1 fork with MPPE only, kernel module mppe.o
+# {{{
+    #-chap
+    #-chapms
+    # Require the peer to authenticate itself using MS-CHAPv2 [Microsoft
+    # Challenge Handshake Authentication Protocol, Version 2] authentication.
+    #+chapms-v2
+    # Require MPPE encryption
+    # (note that MPPE requires the use of MSCHAP-V2 during authentication)
+    #mppe-40    # enable either 40-bit or 128-bit, not both
+    #mppe-128
+    #mppe-stateless
+    # }}}
+
+ms-dns 8.8.4.4
+ms-dns 8.8.8.8
+
+#ms-wins 10.0.0.3
+#ms-wins 10.0.0.4
+
+proxyarp
+#10.8.0.100
+
+# Logging
+#debug
+#dump
+lock
+nobsdcomp
+novj
+novjccomp
+nologfd
+</code></pre><h3 id="配置l2tp的参数"><a href="#配置l2tp的参数" class="headerlink" title="配置l2tp的参数"></a>配置l2tp的参数</h3><pre><code>shell&gt; vim /etc/ppp/options.xl2tpd
+</code></pre><p>内容如下</p>
+<pre><code>#require-pap
+#require-chap
+#require-mschap
+ipcp-accept-local
+ipcp-accept-remote
+require-mschap-v2
+ms-dns 8.8.8.8
+ms-dns 8.8.4.4
+asyncmap 0
+auth
+crtscts
+lock
+hide-password
+modem
+debug
+name l2tpd
+proxyarp
+lcp-echo-interval 30
+lcp-echo-failure 4
+mtu 1400
+noccp
+connect-delay 5000
+# To allow authentication against a Windows domain EXAMPLE, and require the
+# user to be in a group &quot;VPN Users&quot;. Requires the samba-winbind package
+# require-mschap-v2
+# plugin winbind.so
+# ntlm_auth-helper &apos;/usr/bin/ntlm_auth --helper-protocol=ntlm-server-1 --require-membership-of=&quot;EXAMPLE\VPN Users&quot;&apos;
+# You need to join the domain on the server, for example using samba:
+# http://rootmanager.com/ubuntu-ipsec-l2tp-windows-domain-auth/setting-up-openswan-xl2tpd-with-native-windows-clients-lucid.html
+</code></pre><h3 id="配置用户名和密码"><a href="#配置用户名和密码" class="headerlink" title="配置用户名和密码"></a>配置用户名和密码</h3><pre><code>shell&gt; vim /etc/ppp/chap-secrets
+</code></pre><p>内容如下</p>
+<pre><code># Secrets for authentication using CHAP
+# client        server  secret                  IP addresses
+gu******45      pptpd   da*******               *
+gu******45      l2tpd   da*******               *
+ch******45      l2tpd   da*******               *
+</code></pre><p><code>中间不是空格请使用tab</code></p>
+<h3 id="设置配置-允许IP转发"><a href="#设置配置-允许IP转发" class="headerlink" title="设置配置,允许IP转发"></a>设置配置,允许IP转发</h3><pre><code>vim /etc/sysctl.conf
+</code></pre><p>内容如下</p>
+<pre><code>net.ipv4.ip_forward = 1
+net.ipv4.conf.all.rp_filter = 0
+net.ipv4.conf.default.rp_filter = 0
+net.ipv4.conf.eth0.rp_filter = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+</code></pre><p>重新加载配置</p>
+<pre><code>shell&gt; sysctl -p
+</code></pre><h3 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h3><pre><code>shell&gt; vim /usr/lib/firewalld/services/pptpd.xml
+</code></pre><p>内容如下</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;service&gt;
+  &lt;short&gt;pptpd&lt;/short&gt;
+  &lt;description&gt;I want fly the wall&lt;/description&gt;
+  &lt;port protocol=&quot;tcp&quot; port=&quot;1723&quot;/&gt;
+&lt;/service&gt;
+</code></pre><p>修改<code>l2tpd.xml</code></p>
+<pre><code>shell&gt; vim /usr/lib/firewalld/services/l2tpd.xml
+</code></pre><p>内容如下</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;service&gt;
+  &lt;short&gt;l2tpd&lt;/short&gt;
+  &lt;description&gt;L2TP IPSec&lt;/description&gt;
+  &lt;port protocol=&quot;udp&quot; port=&quot;500&quot;/&gt;
+  &lt;port protocol=&quot;udp&quot; port=&quot;4500&quot;/&gt;
+  &lt;port protocol=&quot;udp&quot; port=&quot;1701&quot;/&gt;
+&lt;/service&gt;
+</code></pre><p>最后将服务加入防火墙</p>
+<pre><code>firewall-cmd --reload
+firewall-cmd --permanent --add-service=pptpd
+firewall-cmd --permanent --add-service=l2tpd
+firewall-cmd --permanent --add-service=ipsec
+firewall-cmd --permanent --add-masquerade
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 0 -p tcp -i ppp+ -j TCPMSS --syn --set-mss 1356
+firewall-cmd --reload
+</code></pre><h3 id="检查运行"><a href="#检查运行" class="headerlink" title="检查运行"></a>检查运行</h3><pre><code>shell&gt; ipsec verify
+</code></pre><p>大致结果如下</p>
+<pre><code>Verifying installed system and configuration files
+
+Version check and ipsec on-path                         [OK]
+Libreswan 3.15 (netkey) on 3.10.0-327.22.2.el7.x86_64
+Checking for IPsec support in kernel                    [OK]
+ NETKEY: Testing XFRM related proc values
+         ICMP default/send_redirects                    [OK]
+         ICMP default/accept_redirects                  [OK]
+         XFRM larval drop                               [OK]
+Pluto ipsec.conf syntax                                 [OK]
+Hardware random device                                  [N/A]
+Two or more interfaces found, checking IP forwarding    [OK]
+Checking rp_filter                                      [OK]
+Checking that pluto is running                          [OK]
+ Pluto listening for IKE on udp 500                     [OK]
+ Pluto listening for IKE/NAT-T on udp 4500              [OK]
+ Pluto ipsec.secret syntax                              [OK]
+Checking &apos;ip&apos; command                                   [OK]
+Checking &apos;iptables&apos; command                             [OK]
+Checking &apos;prelink&apos; command does not interfere with FIPSChecking for obsolete ipsec.conf options                 [OBSOLETE KEYWORD]
+ Warning: ignored obsolete keyword &apos;force_keepalive&apos;
+Opportunistic Encryption                                [DISABLED]
+</code></pre><p>[OK]就可,若有[faile]请进行相关检查。</p>
+<h3 id="添加开机启动"><a href="#添加开机启动" class="headerlink" title="添加开机启动"></a>添加开机启动</h3><pre><code>shell&gt; systemctl enable pptpd ipsec xl2tpd
+shell&gt; systemctl restart pptpd ipsec xl2tpd
+</code></pre><p>  <br></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>一般来说到此就可以科学上网了。作者使用的是mac+iphone皆可正常使用。希望各位也能顺利的安装使用。<br><code>mac如果不能连接的话,有可能是排序的问题。</code><br><code>网络偏好设置-&gt;设置-&gt;设定服务顺序-&gt;进行拖动排序</code></p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
