@@ -116,7 +116,9 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
+				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/web/" class="animsition-link">web<small>(1)</small></a></li>
 				    
@@ -193,12 +195,20 @@
           2016-10-27
       </time>
     
+    
+    | 
+    <a href='/tags/vpn/'>vpn</a>,
+    
+    <a href='/tags/L2TP/'>L2TP</a>
+    
+    
 </span>
                 <h1>我的centos7 L2TP VPN 之旅</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
       		<p>0.0苹果的IOS和mac系统在升级之后都移除了pptp,所以在下以前搭建的pptp就派不上用场了。啊,伟大的墙,只能含泪重新搭建。</p>
+<a id="more"></a>
 <p>  <br></p>
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h3 id="服务器及系统"><a href="#服务器及系统" class="headerlink" title="服务器及系统"></a>服务器及系统</h3><p>作者使用的是阿里云ECS香港服务器</p>
 <pre><code>shell&gt; cat /etc/redhat-release
@@ -472,8 +482,8 @@ Checking &apos;prelink&apos; command does not interfere with FIPSChecking for ob
  Warning: ignored obsolete keyword &apos;force_keepalive&apos;
 Opportunistic Encryption                                [DISABLED]
 </code></pre><p>[OK]就可,若有[faile]请进行相关检查。</p>
+<p>命令 <code>xl2tpd -D</code> 可以看到控制台的输出信息。<br>命令 <code>vim /var/log/secure</code> 可以查看相关日志。<br>命令 <code>systemctl restart/start/status/stop pptpd ipsec xl2tpd firewalld</code> 可以开启重启关闭服务以及查看服务状态。</p>
 <h3 id="添加开机启动"><a href="#添加开机启动" class="headerlink" title="添加开机启动"></a>添加开机启动</h3><pre><code>shell&gt; systemctl enable pptpd ipsec xl2tpd
-shell&gt; systemctl restart pptpd ipsec xl2tpd
 </code></pre><p>  <br></p>
 <h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>一般来说到此就可以科学上网了。作者使用的是mac+iphone皆可正常使用。希望各位也能顺利的安装使用。<br><code>mac如果不能连接的话,有可能是排序的问题。</code><br><code>网络偏好设置-&gt;设置-&gt;设定服务顺序-&gt;进行拖动排序</code></p>
 

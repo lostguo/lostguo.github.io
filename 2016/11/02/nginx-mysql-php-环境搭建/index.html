@@ -116,7 +116,9 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
+				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/web/" class="animsition-link">web<small>(1)</small></a></li>
 				    
@@ -193,12 +195,20 @@
           2016-11-02
       </time>
     
+    
+    | 
+    <a href='/tags/lnmp/'>lnmp</a>,
+    
+    <a href='/tags/php-nginx-mysql/'>php+nginx+mysql</a>
+    
+    
 </span>
                 <h1>nginx+mysql+php 环境搭建</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>一直安装lnmp环境乱糟糟的,这次找到了一个还不错的方法,特此记录。</p>
+      		<p>一直安装lnmp环境乱糟糟的,这次以找到的一个还不错的方法并结合自己的研究配置lnmp,特此记录。</p>
+<a id="more"></a>
 <blockquote>
 <p>参考地址  <a href="https://segmentfault.com/a/1190000004123048" title="点击开始传送" target="_blank" rel="external"><code>编译安装nginx1.9.7+php7.0.0服务器环境</code></a></p>
 </blockquote>
@@ -230,7 +240,7 @@ shell&gt; cd nginx1.7.x
 --without-mail_pop3_module \
 --without-mail_imap_module \
 --without-mail_smtp_module
-</code></pre><p><code>最后三项为禁用nginx作为邮件代理服务器,建议想搭建邮件服务器的通知去阅读nginx搭建邮件服务器的教程。</code><br>检查./configure结果,看看有没有报错,有没有缺少模块,如果一切OK，那么往下继续，如果感觉不对，可以用./configure –help认真阅读一下。</p>
+</code></pre><p><code>最后三项为禁用nginx作为邮件代理服务器,建议想搭建邮件服务器的同志去阅读nginx搭建邮件服务器的教程。</code><br>检查./configure结果,看看有没有报错,有没有缺少模块,如果一切OK，那么往下继续，如果感觉不对，可以用./configure –help认真阅读一下。</p>
 <pre><code>shell&gt; make
 shell&gt; make install
 </code></pre><p>表急,安装完了,但是nginx还没有运行</p>
@@ -316,7 +326,7 @@ shell&gt; mv php-fpm.d/www.conf.default php-fpm.d/www.conf
 <pre><code>shell&gt; /usr/local/nginx/sbin/nginx -s reload
 </code></pre><p>到/usr/local/nginx/html去写个文件测试一下吧。<br> <br></p>
 <h1 id="Mysql的安装"><a href="#Mysql的安装" class="headerlink" title="Mysql的安装"></a>Mysql的安装</h1><hr>
-<p>在下安装了mysql5.7  官网描述的挺详细。<br>各位看官请看准自己系统<a href="http://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" title="点击传送" target="_blank" rel="external"><code>官网安装说明传送们</code></a></p>
+<p>在下安装了mysql5.7  官网描述的挺详细。<br>各位看官请看准自己系统<a href="http://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" title="点击传送" target="_blank" rel="external"><code>官网安装说明传送门</code></a></p>
 <h3 id="官方源"><a href="#官方源" class="headerlink" title="官方源"></a>官方源</h3><p>请进入官网寻找自己版本所需的源,<a href="http://dev.mysql.com/downloads/repo/yum/" title="点击传送" target="_blank" rel="external"><code>官网源传送门</code></a><br>由于在下是centos7.2,内核是Red Hat Enterprise Linux 7,所以选择了<code>mysql57-community-release-el7-9.noarch.rpm</code>,以下以此示例</p>
 <h3 id="下载源"><a href="#下载源" class="headerlink" title="下载源"></a>下载源</h3><pre><code>shell&gt; wget http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
 </code></pre><h3 id="安装源"><a href="#安装源" class="headerlink" title="安装源"></a>安装源</h3><pre><code>shell&gt; sudo yum localinstall mysql57-community-release-el7-9.noarch.rpm
@@ -325,12 +335,12 @@ shell&gt; mv php-fpm.d/www.conf.default php-fpm.d/www.conf
 </code></pre><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code>shell&gt; sudo service mysqld start
 </code></pre><p>抑或</p>
 <pre><code>shell&gt; systemctl start mysqld
-</code></pre><h3 id="检查-1"><a href="#检查-1" class="headerlink" title="检查"></a>检查</h3><pre><code>sudo service mysqld status
+</code></pre><h3 id="检查-1"><a href="#检查-1" class="headerlink" title="检查"></a>检查</h3><pre><code>shell&gt; sudo service mysqld status
 </code></pre><p>要显示running ,类似如下</p>
 <pre><code>Active: active (running) since Fri 2016-10-28 10:28:42 CST; 5 days ago
 </code></pre><p>如果正常运行,那么恭喜你,你已经成功的安装完毕了mysql</p>
-<h3 id="初始密码"><a href="#初始密码" class="headerlink" title="初始密码"></a>初始密码</h3><p>系统创建了一个超级账户’root’@’localhost的,和以前太一样的是,mysql -uroot -p <code>不能空密码</code>进,它的<code>初始密码存在了错误日志</code>里。</p>
-<pre><code>sudo grep &apos;temporary password&apos; /var/log/mysqld.log
+<h3 id="初始密码"><a href="#初始密码" class="headerlink" title="初始密码"></a>初始密码</h3><p>系统创建了一个超级账户’root’@’localhost的,和以前不太一样的是,<code>mysql -uroot -p</code> 不能空密码进,它的初始密码存在了错误日志里。</p>
+<pre><code>shell&gt; sudo grep &apos;temporary password&apos; /var/log/mysqld.log
 </code></pre><p>即可查看到初始密码</p>
 <pre><code>2016-10-28T02:28:38.449839Z 1 [Note] A temporary password is generated for root@localhost: 8Ba=2gtz+?wx
 </code></pre><p>类似<code>8Ba=2gtz+?wx</code>的就是初始密码</p>
@@ -339,7 +349,7 @@ shell&gt; mv php-fpm.d/www.conf.default php-fpm.d/www.conf
 </code></pre><p><code>密码总长至少8字符,一大写一小写一个数字一个特殊字符</code></p>
 <p> <br></p>
 <h1 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h1><hr>
-<h2 id="mysql账号授权及参考-点击传送"><a href="#mysql账号授权及参考-点击传送" class="headerlink" title="mysql账号授权及参考 点击传送"></a>mysql账号授权及参考 <a href="http://dev.mysql.com/doc/refman/5.7/en/grant.html" target="_blank" rel="external">点击传送</a></h2><pre><code>CREATE USER &apos;jeffrey&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;mypass&apos;;
+<h2 id="mysql账号授权及参考-官网授权传送门"><a href="#mysql账号授权及参考-官网授权传送门" class="headerlink" title="mysql账号授权及参考 官网授权传送门"></a>mysql账号授权及参考 <a href="http://dev.mysql.com/doc/refman/5.7/en/grant.html" target="_blank" rel="external"><code>官网授权传送门</code></a></h2><pre><code>CREATE USER &apos;jeffrey&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;mypass&apos;;
 GRANT ALL ON db1.* TO &apos;jeffrey&apos;@&apos;localhost&apos;;
 GRANT SELECT ON db2.invoice TO &apos;jeffrey&apos;@&apos;localhost&apos;;
 ALTER USER &apos;jeffrey&apos;@&apos;localhost&apos; WITH MAX_QUERIES_PER_HOUR 90;
@@ -360,6 +370,10 @@ shell&gt; firewall-cmd --add-service=mysql --permanent
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/11/09/php扩展安装phpize/" style="float: left;">
+        ← phpize安装php扩展，GD示范
+    </a>
     
     
     <a class="pull-right" href="/2016/10/31/工欲善其事必先利其器-markdown语法学习/">
