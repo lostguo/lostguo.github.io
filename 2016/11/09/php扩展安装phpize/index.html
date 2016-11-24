@@ -118,7 +118,7 @@
 				  	
 				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(3)</small></a></li>
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(5)</small></a></li>
 				    
 				    <li><a href="/categories/web/" class="animsition-link">web<small>(1)</small></a></li>
 				    
@@ -197,9 +197,9 @@
     
     
     | 
-    <a href='/tags/php/'>php</a>,
+    <a href='/tags/linux/'>linux</a>,
     
-    <a href='/tags/linux/'>linux</a>
+    <a href='/tags/php/'>php</a>
     
     
 </span>
@@ -210,27 +210,36 @@
       		<p>今天正好要用到GD库的时候发现服务器没有开启GD，服务器也没有这服务，然后就以此文来演示一下安装过程。</p>
 <a id="more"></a>
 <h1 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h1><p>首先作者一如既往的使用centos7，安装gd函数库也是需要需要一些依赖的，如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shell&gt; yum install -y libjpeg-devel libpng-devel freetype-devel</div></pre></td></tr></table></figure>
-<p>  <br></p>
+<pre><code>shell&gt; yum install -y libjpeg-devel libpng-devel freetype-devel
+</code></pre><p>  <br></p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>依赖无误安装后，进入到你php的安装文件下的ext/gd目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shell&gt; <span class="built_in">cd</span> /php-7.0.9/ext/gd</div></pre></td></tr></table></figure>
-<p>在目录下执行phpize，如果不知道phpize路径，可以通过命令<code>find / -name phpize</code>来查看你自己的phpize路径</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shell&gt; /usr/<span class="built_in">local</span>/php7/bin/phpize</div></pre></td></tr></table></figure>
-<p>结果类似如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Configuring <span class="keyword">for</span>:</div><div class="line">PHP Api Version:         20151012</div><div class="line">Zend Module Api No:      20151012</div><div class="line">Zend Extension Api No:   320151012</div></pre></td></tr></table></figure>
-<p>然后需要把它配置到php，不知道php-config路径的朋友同样可以通过命令<code>find / -name php-config</code>来查看</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shell&gt; ./configure --with-php-config=/usr/<span class="built_in">local</span>/php7/bin/php-config</div><div class="line">shell&gt; make</div></pre></td></tr></table></figure>
+<pre><code>shell&gt; cd /php-7.0.9/ext/gd
+</code></pre><p>在目录下执行phpize，如果不知道phpize路径，可以通过命令<code>find / -name phpize</code>来查看你自己的phpize路径</p>
+<pre><code>shell&gt; /usr/local/php7/bin/phpize
+</code></pre><p>结果类似如下</p>
+<pre><code>Configuring for:
+PHP Api Version:         20151012
+Zend Module Api No:      20151012
+Zend Extension Api No:   320151012 
+</code></pre><p>然后需要把它配置到php，不知道php-config路径的朋友同样可以通过命令<code>find / -name php-config</code>来查看</p>
+<pre><code>shell&gt; ./configure --with-php-config=/usr/local/php7/bin/php-config
+shell&gt; make
+</code></pre><p>(ps:使用发现未支持libjpeg<code>./configure --with-php-config=/usr/local/php7/bin/php-config --with-jpeg-dir=/usr/local/jpeg/</code>)</p>
 <p>make完毕无误后的朋友会在当前目录的<code>moudles</code>下生成一个<code>gd.so</code>,将他拷贝到你php的扩展目录下</p>
 <p>不知道自己php扩展目录的朋友，可以自行设置或者使用phpinfo查看<code>extension_dir</code>，抑或vi查看php.ini查看<code>extension_dir</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shell&gt; cp modules/gd.so /usr/<span class="built_in">local</span>/php7/lib/php/extensions/no-debug-non-zts-20151012/</div></pre></td></tr></table></figure>
-<p>复制到扩展目录后，在<code>php.ini</code>中添加如下内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">extension=gd.so</div></pre></td></tr></table></figure>
-<p>完毕，php的其它扩展也可以参照此文。</p>
+<pre><code>shell&gt; cp modules/gd.so /usr/local/php7/lib/php/extensions/no-debug-non-zts-20151012/
+</code></pre><p>复制到扩展目录后，在<code>php.ini</code>中添加如下内容</p>
+<pre><code>extension=gd.so
+</code></pre><p>完毕，php的其它扩展也可以参照此文。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/11/13/php开启gzip的方式/" style="float: left;">
+        ← php开启gzip的方式
+    </a>
     
     
     <a class="pull-right" href="/2016/11/02/nginx-mysql-php-环境搭建/">
@@ -239,20 +248,7 @@
     
 </nav>
 
-        <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/11/09/php扩展安装phpize/" data-title="phpize安装php扩展，GD示范" data-url="http://yoursite.com/2016/11/09/php扩展安装phpize/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"lostguo"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	 || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
+        <div class="duoshuo"></div>
     </div>
 </section>
 
