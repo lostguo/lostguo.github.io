@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>php开启gzip的方式 | Wall&#39;s Blog</title>
+  <title>自身前端技术总结以及vue使用记录 | Wall&#39;s Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -118,9 +118,15 @@
 				  	
 				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(5)</small></a></li>
+				    <li><a href="/categories/js/" class="animsition-link">js<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/web/" class="animsition-link">web<small>(1)</small></a></li>
+				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/web/" class="animsition-link">web<small>(2)</small></a></li>
 				    
 				</ul>
         	</li>
@@ -195,12 +201,32 @@
           2016-11-13
       </time>
     
+    
+    | 
+    <a href='/tags/web/'>web</a>,
+    
+    <a href='/tags/vue/'>vue</a>,
+    
+    <a href='/tags/js/'>js</a>,
+    
+    <a href='/tags/html/'>html</a>
+    
+    
 </span>
-                <h1>php开启gzip的方式</h1>
+                <h1>自身前端技术总结以及vue使用记录</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<p>恩，不知道为什么好像在走全栈路线，怎么走着走着就偏了呢，不过这不重要，只差美工设计，我就能完整的全栈了，囧。<br><a id="more"></a></p>
+<h1 id="历史回顾"><a href="#历史回顾" class="headerlink" title="历史回顾"></a>历史回顾</h1><p>相对来说，我的主要注意力还是集中在了后端，所以对于前端，并没有进行太多系统性的总结，也并没有涉及太多的项目，都是服务于后台。</p>
+<h3 id="客串前端交互"><a href="#客串前端交互" class="headerlink" title="客串前端交互"></a>客串前端交互</h3><p>在我从事第一份工作的时候，那时候，对于前后端职责的划分稀里糊涂，前端sisy同志会把一些表单提交和一些循环的之类的互动js留给我，through I am a phper,前端之路算是从这开始了，写过不少风格奇诡的js，有源生有jquery，主要涵盖的是业务逻辑ajax交互之类的。然后有时候自己也想写写前端代码，但是丑爆了，记得在后面的时候bootstrap响应式很火，但是那会儿有更多的php代（没）码（有）需（研）要（究）研（出）究（啥），所以没去研究。</p>
+<h3 id="客串"><a href="#客串" class="headerlink" title="客串"></a>客串</h3><p>后来第二份工作也就是目前就职的公司，是一家创业型公司。运营总监每天找我要数据，可麻烦了，果断嘿咻嘿咻搭建了公司管理后台，找了点模板再自己写写样式，虽然丑爆了但是顶用了，css+js都自己写，没使用框架仍然。</p>
+<h3 id="正式投入"><a href="#正式投入" class="headerlink" title="正式投入"></a>正式投入</h3><p>然后公司要做官网，但是没前端啊，怎么办，我上。反正官网简单。4个页面，写写样式啥的，都不用后台，用2天写完了，然后看着有点不舒服，手机看起来也会有各种问题，这我当时强迫症就上来了，去找响应式办法，找到了bootstrap，直接操刀子上。然后嘿咻嘿咻用了一天就写完了，速度忒快，问题还少。然后一发不可收拾，重构了公司管理后台，虽然还是丑丑的，但是起码有个网站样了，能让自己舒心了。后面陆续使用这套方式写了后台的采购，微信商城。</p>
+<h3 id="最近"><a href="#最近" class="headerlink" title="最近"></a>最近</h3><p>最近感觉bootstrap好像写手机一般，没有weui适合微信，然后是js的问题了，之前都用的php+twig/smarty 或者think自带的模板，可能因为和安卓前端配合多了，变得不咋喜欢这一套。<br>于是又开始琢磨起来了，正好webapp的概念也比较火啊，正好追书神器被封，网站各种小广告，就自己用php抓取数据，然后angularjs+bootstrap做了个简单的看书软件。还差一个核心功能自动化处理，主要是想优化抓取数据插入库的算法，等弄完后就是一个完整的看书软件了，虽然其他功能不算全。</p>
+<h1 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h1><p>参考地址 [<a href="http://www.runoob.com/w3cnote/vue2-start-coding.html" target="_blank" rel="external">http://www.runoob.com/w3cnote/vue2-start-coding.html</a>] 菜鸟站还是蛮好的，入个门简单轻松。<br>vue的环境搭建比想象的多耗了点时间，主要重新理解了一番npm，顺便重新理解一下homebrew，整合一下方便管理。折腾完了之后还无法创建项目，然后第二天到公司就创建成功了，铁通不能翻墙么？翻不了墙，连我的项目都无法创建，是有自己的一套墙么。</p>
+<p>###<br>挖个萝卜带个坑啊。总是研究的时候发现好多好多新东西。哈哈哈、。</p>
+<p>###<br>App.vue里面是页面，<br>而router需要在需要在main.js进行注册</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>

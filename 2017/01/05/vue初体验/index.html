@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>vue初体验 | Wall&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Wall's Blog">
+    <meta name="author" content="XingJie Cheng">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Wall&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/js/" class="animsition-link">js<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/web/" class="animsition-link">web<small>(2)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="https://lostguo.github.io/2016/09/20/about/" class="animsition-link" title="about">About</a></li>
+            <!--<li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>-->
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/my_logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Wall's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/lostguo" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-01-05T08:49:50.000Z" itemprop="datePublished">
+          2017-01-05
+      </time>
+    
+    
+    | 
+    <a href='/tags/前端/'>前端</a>,
+    
+    <a href='/tags/web/'>web</a>,
+    
+    <a href='/tags/vue/'>vue</a>
+    
+    
+</span>
+                <h1>vue初体验</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>作为一个全栈工程师，我怎么可以不会使用前端框架呢。谨以此文记录一下vue的使用过程。<br><a id="more"></a></p>
+<p>一如既往的附上安装教程<a href="http://www.runoob.com/w3cnote/vue2-start-coding.html" title="http://www.runoob.com/w3cnote/vue2-start-coding.html" target="_blank" rel="external"><code>菜鸟教程</code></a>、<a href="https://cn.vuejs.org/v2/guide/installation.html" title="https://cn.vuejs.org/v2/guide/installation.html" target="_blank" rel="external"><code>官网教程</code></a></p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><h4 id="进入到自己的工程文件目录"><a href="#进入到自己的工程文件目录" class="headerlink" title="进入到自己的工程文件目录"></a>进入到自己的工程文件目录</h4><pre><code>vue init webpack-simple 工程名字&lt;工程名字不能用中文&gt;
+</code></pre><h4 id="或者创建-vue1-0-的项目"><a href="#或者创建-vue1-0-的项目" class="headerlink" title="或者创建 vue1.0 的项目"></a>或者创建 vue1.0 的项目</h4><pre><code>vue init webpack-simple#1.0 工程名字&lt;工程名字不能用中文&gt;
+</code></pre><p>一路回车，Author写上你的大名</p>
+<h2 id="cd进入你的工程目录"><a href="#cd进入你的工程目录" class="headerlink" title="cd进入你的工程目录"></a>cd进入你的工程目录</h2><h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><pre><code>npm install
+</code></pre><h4 id="安装vue-router-路由系统，控制访问地址的-、vue-resource-用来数据请求"><a href="#安装vue-router-路由系统，控制访问地址的-、vue-resource-用来数据请求" class="headerlink" title="安装vue-router(路由系统，控制访问地址的)、vue-resource(用来数据请求)"></a>安装vue-router(路由系统，控制访问地址的)、vue-resource(用来数据请求)</h4><pre><code>cnpm install vue-router vue-resource --save
+</code></pre><h4 id="进入调试模式-一般会让你自动浏览诸如localhost-8081-之类的"><a href="#进入调试模式-一般会让你自动浏览诸如localhost-8081-之类的" class="headerlink" title="进入调试模式(一般会让你自动浏览诸如localhost:8081/**)之类的"></a>进入调试模式(一般会让你自动浏览诸如localhost:8081/**)之类的</h4><pre><code>npm run dev
+</code></pre><h4 id="安装饿了么的前端组件库"><a href="#安装饿了么的前端组件库" class="headerlink" title="安装饿了么的前端组件库"></a>安装饿了么的前端组件库</h4><pre><code>cnpm install element-ui@next -S
+</code></pre><h4 id="这几个是用来控制样式的，不然引入element后报错"><a href="#这几个是用来控制样式的，不然引入element后报错" class="headerlink" title="这几个是用来控制样式的，不然引入element后报错"></a>这几个是用来控制样式的，不然引入element后报错</h4><pre><code>cnpm install style-loader --save-dev
+cnpm install css-loader --save-dev
+cnpm install file-loader --save-dev
+</code></pre><h4 id="几个报错"><a href="#几个报错" class="headerlink" title="几个报错"></a>几个报错</h4><ol>
+<li><p><code>[Vue warn]: Error when rendering component &lt;ElRow&gt;</code></p>
+<p> Vue 2.1.5 将 _h 重命名为 _c，而 Element 目前发的版本都是用以前的 compiler 编译的，导致新版 runtime无法运行Element。目前的解决方案是锁定 Vue 的版本为 2.1.4</p>
+</li>
+<li><p>对于服务器端来说，不了解jsonp的同志建议看一下jsonp的概念，因为不知道所以坑了，vue-resource请求这边会自带一个callback参数，而服务器端也是需要返回这个传去的参数的，不然会报错，错到你怀疑自己用错语法。</p>
+</li>
+<li><p>通用方法，我想要用一个通用组件的方法怎么办</p>
+<pre><code>Vue.prototype.yourFunctionName(){}
+</code></pre><p> 然后可以在子组件中<code>this.yourFunctionName()</code>进行调用。</p>
+</li>
+</ol>
+<h4 id="几个小知识"><a href="#几个小知识" class="headerlink" title="几个小知识"></a>几个小知识</h4><ol>
+<li><p>js中不要用=&gt; 可以替代为function(){}</p>
+</li>
+<li><p>通用方法搞死我了，子组件post请求，在不能及时获取情况的时候</p>
+</li>
+<li><p><code>sessionStorage.someYourkey=&#39;xxx&#39;</code>存储在客户端这边的类似session的信息。</p>
+</li>
+<li><p><code>v-mode=&quot;aaa&quot;</code>，绑定变量aaa</p>
+</li>
+<li><p><code>:class=&quot;***&quot;</code>，设置class</p>
+</li>
+</ol>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2017/01/16/2016回顾与2017年度大计/" style="float: left;">
+        ← 2016回顾与2017年度大计
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/12/26/写下书籍总结/">
+        《心理控制术》读后小结 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo"></div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By XingJie Cheng. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/lostguo" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
