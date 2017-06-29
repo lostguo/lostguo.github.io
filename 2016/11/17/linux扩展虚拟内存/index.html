@@ -118,11 +118,11 @@
 				  	
 				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/js/" class="animsition-link">js<small>(1)</small></a></li>
+				    <li><a href="/categories/android/" class="animsition-link">android<small>(0)</small></a></li>
 				    
 				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(6)</small></a></li>
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(7)</small></a></li>
 				    
 				    <li><a href="/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
 				    
@@ -215,28 +215,37 @@
         <div class="col-md-8 col-md-offset-2">
       		<p>因为机子内存小，以前安装symfony时就因为内存不够安不上，回顾下命令。</p>
 <a id="more"></a>
-<h1 id="如何安装"><a href="#如何安装" class="headerlink" title="如何安装"></a>如何安装</h1><h3 id="查看当前使用情况"><a href="#查看当前使用情况" class="headerlink" title="查看当前使用情况"></a>查看当前使用情况</h3><pre><code>shell&gt; free -m
-</code></pre><p>结果如下<br>                   total        used        free      shared  buff/cache   available<br>    Mem:            992         412          73           0         507         438<br>    Swap:             0           0           0</p>
-<h3 id="查看系统"><a href="#查看系统" class="headerlink" title="查看系统"></a>查看系统</h3><pre><code>shell&gt; df -h
+<h2 id="如何安装"><a href="#如何安装" class="headerlink" title="如何安装"></a>如何安装</h2><h4 id="查看当前使用情况"><a href="#查看当前使用情况" class="headerlink" title="查看当前使用情况"></a>查看当前使用情况</h4><pre><code># free -m
 </code></pre><p>结果如下</p>
-<pre><code>/dev/vda1        40G  5.8G   32G  16% /
-devtmpfs        488M     0  488M   0% /dev
-tmpfs           497M     0  497M   0% /dev/shm
-tmpfs           497M  344K  497M   1% /run
-tmpfs           497M     0  497M   0% /sys/fs/cgroup
-tmpfs           100M     0  100M   0% /run/user/0
-</code></pre><h3 id="创建空间"><a href="#创建空间" class="headerlink" title="创建空间"></a>创建空间</h3><pre><code>shell&gt; dd if=/dev/zero of=/swap_increased bs=1024 count=1024000 
+<pre><code>#                total        used        free      shared  buff/cache   available
+# Mem:            992         412          73           0         507         438
+# Swap:             0           0           0
+</code></pre><h4 id="查看系统"><a href="#查看系统" class="headerlink" title="查看系统"></a>查看系统</h4><pre><code># df -h
 </code></pre><p>结果如下</p>
-<pre><code>1024000+0 records in
-1024000+0 records out
-1048576000 bytes (1.0 GB) copied, 3.14372 s, 334 MB/s
-</code></pre><h3 id="设置为虚拟"><a href="#设置为虚拟" class="headerlink" title="设置为虚拟"></a>设置为虚拟</h3><pre><code>shell&gt; mkswap /swap_increased
-</code></pre><h3 id="立刻启用"><a href="#立刻启用" class="headerlink" title="立刻启用"></a>立刻启用</h3><pre><code>shell&gt; swapon /swap_increased 
-</code></pre><p>检查如下<br>                  total        used        free      shared  buff/cache   available<br>    Mem:            992         413          71           0         507         437<br>    Swap:           999           0         999</p>
-<h3 id="设置永久生效"><a href="#设置永久生效" class="headerlink" title="设置永久生效"></a>设置永久生效</h3><pre><code>shell&gt; echo &quot;/swap_increased swap swap defaults 0 0&quot; &gt;&gt; /etc/fstab
-</code></pre><h1 id="如何删除"><a href="#如何删除" class="headerlink" title="如何删除"></a>如何删除</h1><h3 id="停止分区"><a href="#停止分区" class="headerlink" title="停止分区"></a>停止分区</h3><pre><code>shell&gt; swapoff /swap_increased
-</code></pre><h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><pre><code>shell&gt; rm -rf /swap/swap
-</code></pre><h3 id="删除”-etc-swap”指定文件"><a href="#删除”-etc-swap”指定文件" class="headerlink" title="删除”/etc/swap”指定文件"></a>删除”/etc/swap”指定文件</h3><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><pre><code>shell&gt; sed -i &quot;/&apos;\/swap_increased swap swap defaults 0 0&apos;//&quot; /etc/fstab
+<pre><code># /dev/vda1        40G  5.8G   32G  16% /
+# devtmpfs        488M     0  488M   0% /dev
+# tmpfs           497M     0  497M   0% /dev/shm
+# tmpfs           497M  344K  497M   1% /run
+# tmpfs           497M     0  497M   0% /sys/fs/cgroup
+# tmpfs           100M     0  100M   0% /run/user/0
+</code></pre><h4 id="创建空间"><a href="#创建空间" class="headerlink" title="创建空间"></a>创建空间</h4><pre><code># dd if=/dev/zero of=/swap_increased bs=1024 count=1024000 
+</code></pre><p>结果如下</p>
+<pre><code># 1024000+0    records    in
+# 1024000+0    records    out
+# 1048576000    bytes (1.0 GB) copied, 3.14372 s, 334 MB/s
+</code></pre><h4 id="设置为虚拟"><a href="#设置为虚拟" class="headerlink" title="设置为虚拟"></a>设置为虚拟</h4><pre><code># mkswap /swap_increased
+</code></pre><h4 id="立刻启用"><a href="#立刻启用" class="headerlink" title="立刻启用"></a>立刻启用</h4><pre><code># swapon /swap_increased 
+</code></pre><p>检查如下</p>
+<pre><code>#               total        used        free      shared  buff/cache   available
+# Mem:            992         413          71           0         507         437
+# Swap:           999           0         999
+</code></pre><h4 id="设置永久生效"><a href="#设置永久生效" class="headerlink" title="设置永久生效"></a>设置永久生效</h4><pre><code># echo &quot;/swap_increased swap swap defaults 0 0&quot; &gt;&gt; /etc/fstab
+</code></pre><h2 id="如何增加"><a href="#如何增加" class="headerlink" title="如何增加"></a>如何增加</h2><h4 id="dd增加"><a href="#dd增加" class="headerlink" title="dd增加"></a>dd增加</h4><pre><code># dd if=/dev/zero of=/tmp/swap bs=1024 count=1024000
+</code></pre><h4 id="mkswap制作一个swap文件"><a href="#mkswap制作一个swap文件" class="headerlink" title="mkswap制作一个swap文件"></a>mkswap制作一个swap文件</h4><pre><code># mkswap /tmp/swap
+</code></pre><h4 id="swapon启动swap文件"><a href="#swapon启动swap文件" class="headerlink" title="swapon启动swap文件"></a>swapon启动swap文件</h4><pre><code># swapon /tmp/swap
+</code></pre><h2 id="如何删除"><a href="#如何删除" class="headerlink" title="如何删除"></a>如何删除</h2><h4 id="停止分区"><a href="#停止分区" class="headerlink" title="停止分区"></a>停止分区</h4><pre><code># swapoff /swap_increased
+</code></pre><h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><pre><code># rm -rf /swap/swap
+</code></pre><h4 id="删除”-etc-swap”指定文件"><a href="#删除”-etc-swap”指定文件" class="headerlink" title="删除”/etc/swap”指定文件"></a>删除”/etc/swap”指定文件</h4><h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><pre><code># sed -i &quot;/&apos;\/swap_increased swap swap defaults 0 0&apos;//&quot; /etc/fstab
 </code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">

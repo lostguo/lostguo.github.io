@@ -118,11 +118,11 @@
 				  	
 				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/js/" class="animsition-link">js<small>(1)</small></a></li>
+				    <li><a href="/categories/android/" class="animsition-link">android<small>(0)</small></a></li>
 				    
 				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(6)</small></a></li>
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(7)</small></a></li>
 				    
 				    <li><a href="/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
 				    
@@ -215,17 +215,23 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>恩，linux和mac的工具问题一直不熟练与用完忘，今天梳理下nodejs、mac、homebrew。<br><a id="more"></a></p>
-<h1 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h1><p><strong>参考地址：<a href="http://brew.sh/" title="点击开始传送" target="_blank" rel="external"><code>homebrew官网地址</code></a></strong></p>
+      		<p>恩，linux和mac的工具问题一直不熟练与用完忘，今天梳理下mac下nodejs、homebrew。<br><a id="more"></a></p>
+<h2 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h2><p><strong>参考地址：<a href="http://brew.sh/" title="点击开始传送" target="_blank" rel="external"><code>homebrew官网地址</code></a></strong></p>
 <p>当更新时:需要设置<code>/usr/local</code> 目录切换为非root拥有者,不然<code>brew update</code> 要么没写入权限，要么root权限过高，升级完了，再把<code>/usr/local</code>权限切回去</p>
-<p>brew doctor 安全检查，确保安全可靠。 针对性逐条处理。</p>
-<h1 id="node"><a href="#node" class="headerlink" title="node"></a>node</h1><p>之前是按照官网安装的node 但是没有用brew，所以用homebrew重装一遍了，删的乱七八糟的赶脚，但是这样子后面好管理。</p>
-<h1 id="顺便用brew-重装了php"><a href="#顺便用brew-重装了php" class="headerlink" title="顺便用brew 重装了php"></a>顺便用brew 重装了php</h1><p>brew install homebrew/php/php70  –with-homebrew-openssl –with-homebrew-libxslt –with-homebrew-curl –with-fpm –with-debug –with-gmp –with-imap –with-tidy –with-libmysql</p>
-<p>替换homebrew默认源</p>
-<p>中科大的源，据说比较好 不然brew 慢死了= =<br>cd “$(brew –repo)”<br>git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</p>
-<h1 id="关于VUE"><a href="#关于VUE" class="headerlink" title="关于VUE"></a>关于VUE</h1><p>vue的需要用npm安装一些列其他工具，和hexoblog类似，正式发布的时候只需要发布需要的文件到服务器上。和安卓的思路一样么？<br>那么以前symfony是不是也是这个思路呢？</p>
-<p>关于css<br>npm i mint-ui -S</p>
-<h3 id="此文待补充"><a href="#此文待补充" class="headerlink" title="此文待补充"></a>此文待补充</h3>
+<pre><code>brew doctor 
+</code></pre><p>安全检查，确保安全可靠。 针对性逐条处理。</p>
+<p>中科大的源，据说比较好，不然brew慢死了= =</p>
+<pre><code>cd &quot;$(brew --repo)&quot;
+git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
+</code></pre><p><br></p>
+<h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><p>之前是按照官网安装的node 但是没有用brew，所以用homebrew重装一遍了，删的乱七八糟的赶脚，但是这样子后面好管理。</p>
+<p><br></p>
+<h2 id="乱入PHP"><a href="#乱入PHP" class="headerlink" title="乱入PHP"></a>乱入PHP</h2><pre><code>brew install homebrew/php/php70  --with-homebrew-openssl --with-homebrew-libxslt --with-homebrew-curl --with-fpm --with-debug --with-gmp --with-imap --with-tidy --with-libmysql
+</code></pre><p><br></p>
+<h2 id="关于VUE"><a href="#关于VUE" class="headerlink" title="关于VUE"></a>关于VUE</h2><p>vue的需要用npm安装一些列其他工具，和hexoblog类似，正式发布的时候只需要发布需要的文件到服务器上。和安卓的思路一样么？</p>
+<p>关于css</p>
+<pre><code>npm i mint-ui -S
+</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>

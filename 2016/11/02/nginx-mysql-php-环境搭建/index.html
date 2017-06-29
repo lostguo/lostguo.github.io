@@ -118,11 +118,11 @@
 				  	
 				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/js/" class="animsition-link">js<small>(1)</small></a></li>
+				    <li><a href="/categories/android/" class="animsition-link">android<small>(0)</small></a></li>
 				    
 				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(6)</small></a></li>
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(7)</small></a></li>
 				    
 				    <li><a href="/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
 				    
@@ -219,25 +219,25 @@
 <p>参考地址  <a href="https://segmentfault.com/a/1190000004123048" title="点击开始传送" target="_blank" rel="external"><code>编译安装nginx1.9.7+php7.0.0服务器环境</code></a></p>
 </blockquote>
 <h1 id="我的系统"><a href="#我的系统" class="headerlink" title="我的系统"></a>我的系统</h1><hr>
-<pre><code>shell&gt; cat /etc/redhat-release
-CentOS Linux release 7.2.1511 (Core)
+<pre><code># cat /etc/redhat-release
+# CentOS Linux release 7.2.1511 (Core)
 </code></pre><p> <br></p>
 <h1 id="nginx的安装"><a href="#nginx的安装" class="headerlink" title="nginx的安装"></a>nginx的安装</h1><hr>
 <h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>lnmp环境搭建依赖安装必不可少,不然就是各种麻烦,所以一口气安装好吧0.0</p>
-<pre><code>shell&gt; yum -y install gcc gcc-c++ autoconf automake libtool make cmake
-shell&gt; yum -y install zlib zlib-devel openssl openssl-devel pcre-devel
+<pre><code># yum -y install gcc gcc-c++ autoconf automake libtool make cmake
+# yum -y install zlib zlib-devel openssl openssl-devel pcre-devel
 </code></pre><p>zlib: 为nginx提供gzip模块，需要zlib库支持</p>
-<h2 id="创建nginx用户组"><a href="#创建nginx用户组" class="headerlink" title="创建nginx用户组"></a>创建nginx用户组</h2><pre><code>shell&gt; groupadd nginx
-shell&gt; useradd -g nginx -M nginx
+<h2 id="创建nginx用户组"><a href="#创建nginx用户组" class="headerlink" title="创建nginx用户组"></a>创建nginx用户组</h2><pre><code># groupadd nginx
+# useradd -g nginx -M nginx
 </code></pre><p><code>-g为用户指定组 -M不自动生成home目录,毕竟我们不是为了创建一个用户</code></p>
-<pre><code>shell&gt; vi /etc/passwd
+<pre><code># vi /etc/passwd
 </code></pre><p>找到nginx，将后面的<code>/bin/bash</code>改为<code>/sbin/nologin</code>就不让ssh登录啦。</p>
 <h2 id="编译安装nginx"><a href="#编译安装nginx" class="headerlink" title="编译安装nginx"></a>编译安装nginx</h2><p>进入nginx官网啦,找到最新版本的tar.gz包的链接,执行以下动作。</p>
-<pre><code>shell&gt; wget http://xxxxxxxxxx/nginx1.7.x.tar.gz
-shell&gt; tar zxvf nginx1.7.x.tar.gz
-shell&gt; cd nginx1.7.x
+<pre><code># wget http://xxxxxxxxxx/nginx1.7.x.tar.gz
+# tar zxvf nginx1.7.x.tar.gz
+# cd nginx1.7.x
 </code></pre><p>执行./configure,把软件安装到/usr/local目录,用conf、etc、sbin、run等进行归类管理。</p>
-<pre><code>shell&gt; ./configure --prefix=/usr/local/nginx \
+<pre><code># ./configure --prefix=/usr/local/nginx \
 --pid-path=/usr/local/nginx/run/nginx.pid \
 --with-http_ssl_module \
 --user=nginx \
@@ -247,20 +247,20 @@ shell&gt; cd nginx1.7.x
 --without-mail_imap_module \
 --without-mail_smtp_module
 </code></pre><p><code>最后三项为禁用nginx作为邮件代理服务器,建议想搭建邮件服务器的同志去阅读nginx搭建邮件服务器的教程。</code><br>检查./configure结果,看看有没有报错,有没有缺少模块,如果一切OK，那么往下继续，如果感觉不对，可以用./configure –help认真阅读一下。</p>
-<pre><code>shell&gt; make
-shell&gt; make install
+<pre><code># make
+# make install
 </code></pre><p>表急,安装完了,但是nginx还没有运行</p>
-<pre><code>shell&gt; cd /usr/local/nginx
-shell&gt; ls
-shell&gt; sbin/nginx
+<pre><code># cd /usr/local/nginx
+# ls
+# sbin/nginx
 </code></pre><p> <br></p>
 <h1 id="php7的编译安装"><a href="#php7的编译安装" class="headerlink" title="php7的编译安装"></a>php7的编译安装</h1><hr>
-<h2 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h2><pre><code>shell&gt; yum -y install libxml2 libxml2-devel openssl openssl-devel curl-devel libjpeg-devel libpng-devel freetype-devel libmcrypt-devel
-</code></pre><h2 id="编译安装php7"><a href="#编译安装php7" class="headerlink" title="编译安装php7"></a>编译安装php7</h2><pre><code>shell&gt; wget http://am1.php.net/get/php-7.0.0.tar.gz/from/this/mirror
-shell&gt; tar zvxf php-7.0.0.tar.gz
-shell&gt; cd php-7.0.0
+<h2 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h2><pre><code># yum -y install libxml2 libxml2-devel openssl openssl-devel curl-devel libjpeg-devel libpng-devel freetype-devel libmcrypt-devel
+</code></pre><h2 id="编译安装php7"><a href="#编译安装php7" class="headerlink" title="编译安装php7"></a>编译安装php7</h2><pre><code># wget http://am1.php.net/get/php-7.0.0.tar.gz/from/this/mirror
+# tar zvxf php-7.0.0.tar.gz
+# cd php-7.0.0
 </code></pre><p>接下来要进行编译前的配置,我们需要提供php-fpm相关参数</p>
-<pre><code>shell&gt; ./configure --prefix=/usr/local/php7 \
+<pre><code># ./configure --prefix=/usr/local/php7 \
 --with-config-file-path=/usr/local/php7/etc \
 --with-config-file-scan-dir=/usr/local/php7/etc/php.d \
 --with-mcrypt=/usr/include \
@@ -295,30 +295,30 @@ shell&gt; cd php-7.0.0
 --with-freetype-dir \
 --enable-opcache
 </code></pre><p>配置无误后执行:</p>
-<pre><code>shell&gt; make
-shell&gt; make install
+<pre><code># make
+# make install
 </code></pre><p>如果安装成功，那么php7的安装就OK了。</p>
 <h2 id="调整php配置"><a href="#调整php配置" class="headerlink" title="调整php配置"></a>调整php配置</h2><p>安装好后发现/usr/local/php7/etc下面没有php.ini文件,去php7的源码安装包里找吧,那里有着php7全部的宝藏</p>
-<pre><code>shell&gt; cd /usr/src/php-7.0.0/
-shell&gt; ls
+<pre><code># cd /usr/src/php-7.0.0/
+# ls
 </code></pre><p>惯例你会发现有俩个php.ini-xxx的文件,一个是产品模式,一个是开发模式</p>
-<pre><code>shell&gt; cp php.ini-production /usr/local/php7/etc/php.ini
-shell&gt; vi /usr/local/php7/etc/php.ini
+<pre><code># cp php.ini-production /usr/local/php7/etc/php.ini
+# vi /usr/local/php7/etc/php.ini
 </code></pre><p>vi进行自己所需的其他配置。</p>
 <h2 id="启用php-fpm服务"><a href="#启用php-fpm服务" class="headerlink" title="启用php-fpm服务"></a>启用php-fpm服务</h2><p>上面我们在编译php7的时候，已经将fpm模块编译了，那么接下来，我们要启用php-fpm。但是默认情况下它的配置文件和服务都没有启用，所以要我们自己来搞定。</p>
-<h3 id="搞定配置文件"><a href="#搞定配置文件" class="headerlink" title="搞定配置文件"></a>搞定配置文件</h3><pre><code>shell&gt; cd /usr/local/php7/etc
-shell&gt; mv php-fpm.conf.default php-fpm.conf
-shell&gt; mv php-fpm.d/www.conf.default php-fpm.d/www.conf
+<h3 id="搞定配置文件"><a href="#搞定配置文件" class="headerlink" title="搞定配置文件"></a>搞定配置文件</h3><pre><code># cd /usr/local/php7/etc
+# mv php-fpm.conf.default php-fpm.conf
+# mv php-fpm.d/www.conf.default php-fpm.d/www.conf
 </code></pre><p>php-fpm 的开启我直接通过<code>systemctl start php-fpm</code> 开启了0.0。<br>可以通过<code>ps -ef | grep php-fpm</code>来查看php-fpm的运行状态。</p>
 <h2 id="nginx和php-fpm配置"><a href="#nginx和php-fpm配置" class="headerlink" title="nginx和php-fpm配置"></a>nginx和php-fpm配置</h2><p>php-fpm走的是9000端口,外网是无法访问的,我们需要在nginx的配置文件中增加代理的规则，即可让用户在访问80端口，请求php的时候，交由后端的fpm去执行。</p>
-<pre><code>shell&gt; vi /usr/local/nginx/conf/nginx.conf
+<pre><code># vi /usr/local/nginx/conf/nginx.conf
 </code></pre><p>应该在nginx.conf已经有例子了,如下:</p>
 <pre><code>#location ~ \.php$ {
-  #   root           html;
-  #  fastcgi_pass   127.0.0.1:9000;
-  #  fastcgi_index  index.php;
-  #  fastcgi_param  SCRIPT_FILENAME  /script$fastcgi_script_name;
-  #  include        fastcgi_params;
+#   root           html;
+#  fastcgi_pass   127.0.0.1:9000;
+#  fastcgi_index  index.php;
+#  fastcgi_param  SCRIPT_FILENAME  /script$fastcgi_script_name;
+#  include        fastcgi_params;
 #}
 </code></pre><p>把前面的#注释符号去掉，把script改为<code>$document_root</code></p>
 <pre><code>location ~ \.php$ {
@@ -329,47 +329,47 @@ shell&gt; mv php-fpm.d/www.conf.default php-fpm.d/www.conf
     include        fastcgi_params;
 }
 </code></pre><p>这样就OK了，重新载入nginx配置。</p>
-<pre><code>shell&gt; /usr/local/nginx/sbin/nginx -s reload
+<pre><code># /usr/local/nginx/sbin/nginx -s reload
 </code></pre><p>到/usr/local/nginx/html去写个文件测试一下吧。<br> <br></p>
 <h1 id="Mysql的安装"><a href="#Mysql的安装" class="headerlink" title="Mysql的安装"></a>Mysql的安装</h1><hr>
 <p>在下安装了mysql5.7  官网描述的挺详细。<br>各位看官请看准自己系统<a href="http://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" title="点击传送" target="_blank" rel="external"><code>官网安装说明传送门</code></a></p>
 <h3 id="官方源"><a href="#官方源" class="headerlink" title="官方源"></a>官方源</h3><p>请进入官网寻找自己版本所需的源,<a href="http://dev.mysql.com/downloads/repo/yum/" title="点击传送" target="_blank" rel="external"><code>官网源传送门</code></a><br>由于在下是centos7.2,内核是Red Hat Enterprise Linux 7,所以选择了<code>mysql57-community-release-el7-9.noarch.rpm</code>,以下以此示例</p>
-<h3 id="下载源"><a href="#下载源" class="headerlink" title="下载源"></a>下载源</h3><pre><code>shell&gt; wget http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
-</code></pre><h3 id="安装源"><a href="#安装源" class="headerlink" title="安装源"></a>安装源</h3><pre><code>shell&gt; sudo yum localinstall mysql57-community-release-el7-9.noarch.rpm
-</code></pre><h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><pre><code>shell&gt; yum repolist enabled | grep &quot;mysql.*-community.*&quot;
-</code></pre><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>shell&gt; sudo yum install mysql-community-server
-</code></pre><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code>shell&gt; sudo service mysqld start
+<h3 id="下载源"><a href="#下载源" class="headerlink" title="下载源"></a>下载源</h3><pre><code># wget http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+</code></pre><h3 id="安装源"><a href="#安装源" class="headerlink" title="安装源"></a>安装源</h3><pre><code># sudo yum localinstall mysql57-community-release-el7-9.noarch.rpm
+</code></pre><h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><pre><code># yum repolist enabled | grep &quot;mysql.*-community.*&quot;
+</code></pre><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code># sudo yum install mysql-community-server
+</code></pre><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code># sudo service mysqld start
 </code></pre><p>抑或</p>
-<pre><code>shell&gt; systemctl start mysqld
-</code></pre><h3 id="检查-1"><a href="#检查-1" class="headerlink" title="检查"></a>检查</h3><pre><code>shell&gt; sudo service mysqld status
+<pre><code># systemctl start mysqld
+</code></pre><h3 id="检查-1"><a href="#检查-1" class="headerlink" title="检查"></a>检查</h3><pre><code># sudo service mysqld status
 </code></pre><p>要显示running ,类似如下</p>
-<pre><code>Active: active (running) since Fri 2016-10-28 10:28:42 CST; 5 days ago
+<pre><code># Active: active (running) since Fri 2016-10-28 10:28:42 CST; 5 days ago
 </code></pre><p>如果正常运行,那么恭喜你,你已经成功的安装完毕了mysql</p>
 <h3 id="初始密码"><a href="#初始密码" class="headerlink" title="初始密码"></a>初始密码</h3><p>系统创建了一个超级账户’root’@’localhost的,和以前不太一样的是,<code>mysql -uroot -p</code> 不能空密码进,它的初始密码存在了错误日志里。</p>
-<pre><code>shell&gt; sudo grep &apos;temporary password&apos; /var/log/mysqld.log
+<pre><code># sudo grep &apos;temporary password&apos; /var/log/mysqld.log
 </code></pre><p>即可查看到初始密码</p>
-<pre><code>2016-10-28T02:28:38.449839Z 1 [Note] A temporary password is generated for root@localhost: 8Ba=2gtz+?wx
+<pre><code># 2016-10-28T02:28:38.449839Z 1 [Note] A temporary password is generated for root@localhost: 8Ba=2gtz+?wx
 </code></pre><p>类似<code>8Ba=2gtz+?wx</code>的就是初始密码</p>
-<h3 id="进入mysql"><a href="#进入mysql" class="headerlink" title="进入mysql"></a>进入mysql</h3><pre><code>shell&gt; mysql -uroot -p
+<h3 id="进入mysql"><a href="#进入mysql" class="headerlink" title="进入mysql"></a>进入mysql</h3><pre><code># mysql -uroot -p
 </code></pre><h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><pre><code>mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;MyNewPass4!&apos;;
 </code></pre><p><code>密码总长至少8字符,一大写一小写一个数字一个特殊字符</code></p>
 <p> <br></p>
 <h1 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h1><hr>
-<h2 id="mysql账号授权及参考-官网授权传送门"><a href="#mysql账号授权及参考-官网授权传送门" class="headerlink" title="mysql账号授权及参考 官网授权传送门"></a>mysql账号授权及参考 <a href="http://dev.mysql.com/doc/refman/5.7/en/grant.html" target="_blank" rel="external"><code>官网授权传送门</code></a></h2><pre><code>CREATE USER &apos;jeffrey&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;mypass&apos;;
-GRANT ALL ON db1.* TO &apos;jeffrey&apos;@&apos;localhost&apos;;
-GRANT SELECT ON db2.invoice TO &apos;jeffrey&apos;@&apos;localhost&apos;;
-ALTER USER &apos;jeffrey&apos;@&apos;localhost&apos; WITH MAX_QUERIES_PER_HOUR 90;
+<h2 id="mysql账号授权及参考-官网授权传送门"><a href="#mysql账号授权及参考-官网授权传送门" class="headerlink" title="mysql账号授权及参考 官网授权传送门"></a>mysql账号授权及参考 <a href="http://dev.mysql.com/doc/refman/5.7/en/grant.html" target="_blank" rel="external"><code>官网授权传送门</code></a></h2><pre><code>mysql&gt; CREATE USER &apos;jeffrey&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;mypass&apos;;
+mysql&gt; GRANT ALL ON db1.* TO &apos;jeffrey&apos;@&apos;localhost&apos;;
+mysql&gt; GRANT SELECT ON db2.invoice TO &apos;jeffrey&apos;@&apos;localhost&apos;;
+mysql&gt; ALTER USER &apos;jeffrey&apos;@&apos;localhost&apos; WITH MAX_QUERIES_PER_HOUR 90;
 </code></pre><h2 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h2><pre><code>mysql&gt; use mysql;
 mysql&gt; update user set host = &apos;%&apos; where user = &apos;jeffrey&apos;;
 </code></pre><p>这一块的话5.7我直接创建远程账号似乎有问题不能用,密码机制应该做过调整,所以直接用官网方法创建了账号,并通过修改host为%来允许远程登录。</p>
 <h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>nginx安装完毕后,mysql安装完毕后,如果开启防火墙的看官可能还会遇到不能访问,但是本地运行正常的问题,那么就有可能是防火墙的问题了。<br>由于我使用的是firewall防火墙,仅描述一下firewall添加规则方式。<br>添加方式</p>
-<pre><code>shell&gt; firewall-cmd --add-service=http --permanent
-shell&gt; firewall-cmd --add-service=https --permanent
-shell&gt; firewall-cmd --add-service=mysql --permanent
+<pre><code># firewall-cmd --add-service=http --permanent
+# firewall-cmd --add-service=https --permanent
+# firewall-cmd --add-service=mysql --permanent
 </code></pre><p>关闭方式</p>
-<pre><code>shell&gt; firewall-cmd --remove-service=http --permanent
+<pre><code># firewall-cmd --remove-service=http --permanent
 </code></pre><p>显示<code>success</code>就是成功了,添加完毕需要重启防火墙。</p>
-<pre><code>shell&gt; systemctl restart firewalld
+<pre><code># systemctl restart firewalld
 </code></pre><p>好好的理了一下,下次重装就能顺利多了。</p>
 
             <div class="clearfix"></div>

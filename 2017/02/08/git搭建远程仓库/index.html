@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: lnmp | Wall&#39;s Blog</title>
+  <title>git搭建远程仓库 | Wall&#39;s Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -191,69 +191,107 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/my_bg_img.jpeg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>You succeeded in causing my attention.</h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/11/02/nginx-mysql-php-环境搭建/">nginx+mysql+php 环境搭建</a></h4>
-                            
-                            <p><time datetime="2016-11-02T01:27:46.000Z"><a href="/2016/11/02/nginx-mysql-php-环境搭建/">2016-11-02</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-02-08T08:51:14.000Z" itemprop="datePublished">
+          2017-02-08
+      </time>
+    
+    
+    | 
+    <a href='/tags/linux/'>linux</a>,
+    
+    <a href='/tags/git/'>git</a>
+    
+    
+</span>
+                <h1>git搭建远程仓库</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>公司人员慢慢多起来了，版本控制一直没弄好，今天得弄弄好了。</p>
+<a id="more"></a>
+<h2 id="仓库环境"><a href="#仓库环境" class="headerlink" title="仓库环境"></a>仓库环境</h2><p><img src="https://img.shields.io/badge/linux--green.svg" alt="">   <img src="https://img.shields.io/badge/centos-7-green.svg" alt="">       <img src="https://img.shields.io/badge/git-2.11-green.svg" alt=""></p>
+<p><br></p>
+<h2 id="依赖安装"><a href="#依赖安装" class="headerlink" title="依赖安装"></a>依赖安装</h2><pre><code>yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker
+</code></pre><p><br></p>
+<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><pre><code>wget https://www.kernel.org/pub/software/scm/git/git-2.11.1.tar.gz
+tar -zxvf git-2.11.1.tar.gz
+cd git-2.11.1
+make prefix=/usr/local/git all
+make prefix=/usr/local/git install 
+</code></pre><p>将git添加到环境变量去，不然<code>git --version</code>可能显示的是老版本</p>
+<pre><code>whereis git 
+vim /etc/profile 
+</code></pre><p>最后一行添加</p>
+<pre><code>export PATH=/usr/local/git/bin:$PATH
+</code></pre><p>再次执行</p>
+<pre><code>source /etc/profile
+</code></pre><p><br></p>
+<h2 id="配置远程仓库"><a href="#配置远程仓库" class="headerlink" title="配置远程仓库"></a>配置远程仓库</h2><p>创建一个git用户用来运行git服务</p>
+<pre><code>adduser git
+</code></pre><p>进入你想创建仓库的文件目录 </p>
+<pre><code>git init --bare yourprojectname.git  
+</code></pre><p>修改所有者</p>
+<pre><code>chown -R git:git yourprojectname.git
+</code></pre><p>禁用shell登录git </p>
+<pre><code>vi /etc/passwd
+git:x:1001:1001:,,,:/home/git:/bin/bash
+git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+</code></pre><p>到此服务器基本搭建结束,需要添加用户的id_rsa.pub</p>
+<pre><code>vi /home/git/.ssh/authorized_keys 
+</code></pre><p><br></p>
+<h2 id="本地相关配置"><a href="#本地相关配置" class="headerlink" title="本地相关配置"></a>本地相关配置</h2><p>本地平常用的git信息</p>
+<pre><code>git config --global user.name &quot;chengxingjie&quot;
+git config --global user.email &quot;326091867@qq.com&quot;
+</code></pre><p>查看配置参数</p>
+<pre><code>git config --global --list
+</code></pre><p>如果没有id_rsa.pub</p>
+<pre><code>ssh-keygen -t rsa -C &quot;326091867@qq.com&quot; 
+</code></pre><p>添加一个远程连接，后面用来push</p>
+<pre><code>git remote add origin git@erp.yourweburl.com:srv/yourprojectname.git
+</code></pre><p>我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来</p>
+<pre><code>git push -u origin master
+</code></pre><p>如果有多个项目，以下方法也适合</p>
+<pre><code>git remote add saasorigin git@erp.yourweburl.com:/srv/yoursaasname.git
+</code></pre><p><br></p>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h4 id="git版本出错怎么办？"><a href="#git版本出错怎么办？" class="headerlink" title="git版本出错怎么办？"></a>git版本出错怎么办？</h4><pre><code>git reset --hard saasorigin/master 
+</code></pre><p>恢复上次git版本，但是后面的修改不做保留，需要注意</p>
+<h4 id="git如何获取远程库并覆盖本地记录？"><a href="#git如何获取远程库并覆盖本地记录？" class="headerlink" title="git如何获取远程库并覆盖本地记录？"></a>git如何获取远程库并覆盖本地记录？</h4><pre><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;
+git fetch --all 
+git reset --hard saasorigin/master
+</code></pre><h4 id="git-pull的作用是什么？"><a href="#git-pull的作用是什么？" class="headerlink" title="git pull的作用是什么？"></a>git pull的作用是什么？</h4><p>取回远程主机某个分支的更新，再与本地的指定分支合并。<br>完整格式</p>
+<pre><code>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;
+</code></pre><p>取回远程next更新合并到本地master，等同于先做git fetch，再做git merge</p>
+<pre><code>git pull origin next:master
+</code></pre><p>创建分支</p>
+<pre><code>git branch new_branch
+</code></pre><p>切换分支  <code>checkout -b</code> 可以创建并切换</p>
+<pre><code>git checkout new_branch
+</code></pre><h4 id="如何合并分支？例：将zj-master分支合并到master"><a href="#如何合并分支？例：将zj-master分支合并到master" class="headerlink" title="如何合并分支？例：将zj_master分支合并到master"></a>如何合并分支？例：将zj_master分支合并到master</h4><pre><code>git checkout master
+git merge zj_master
+</code></pre>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2017/01/16/2016回顾与2017年度大计/">
+        2016回顾与2017年度大计 →
+    </a>
+    
+</nav>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>To the world you may be one person, but to one person you may be the world.</p>
-        </div>
+        <div class="duoshuo"></div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 

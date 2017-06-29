@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>vue初体验 | Wall&#39;s Blog</title>
+  <title>我的前端之路以及入坑vue | Wall&#39;s Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -118,11 +118,11 @@
 				  	
 				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/js/" class="animsition-link">js<small>(1)</small></a></li>
+				    <li><a href="/categories/android/" class="animsition-link">android<small>(0)</small></a></li>
 				    
 				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(6)</small></a></li>
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(7)</small></a></li>
 				    
 				    <li><a href="/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
 				    
@@ -205,28 +205,36 @@
     | 
     <a href='/tags/vue/'>vue</a>,
     
+    <a href='/tags/js/'>js</a>,
+    
     <a href='/tags/web/'>web</a>,
     
-    <a href='/tags/前端/'>前端</a>
+    <a href='/tags/html/'>html</a>
     
     
 </span>
-                <h1>vue初体验</h1>
+                <h1>我的前端之路以及入坑vue</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>作为一个全栈工程师，我怎么可以不会使用前端框架呢。谨以此文记录一下vue的使用过程。<br><a id="more"></a></p>
+      		<p>不知道为什么好像走向了全栈路线，作为一个全栈工程师，我怎么可以不会使用前端框架呢。谨以此文记录一下vue的使用过程。<br><a id="more"></a></p>
+<h2 id="历史回顾"><a href="#历史回顾" class="headerlink" title="历史回顾"></a>历史回顾</h2><p>相对来说，我的主要注意力还是集中在了后端，所以对于前端，并没有进行太多系统性的总结，也并没有涉及太多的项目，都是服务于后台。</p>
+<h4 id="客串js交互"><a href="#客串js交互" class="headerlink" title="客串js交互"></a>客串js交互</h4><p>在我从事第一份工作的时候，对于前后端职责的划分稀里糊涂，前端sisy同志会把一些表单提交和一些循环的之类的互动js留给我，尽管我是个phper，前端之路算是从这开始了。<br>写过不少风格奇诡的js，主要涵盖的是业务逻辑ajax交互之类的，有时候自己也想写写前端代码，但是丑爆了，记得那时响应式火起来没多久的一年，但是那会儿有更多的php代（没）码（有）需（研）要（究）研（出）究（啥），所以没去研究。</p>
+<h4 id="客串前端"><a href="#客串前端" class="headerlink" title="客串前端"></a>客串前端</h4><p>后来第二份工作也就是目前就职的公司，是一家创业型公司。运营总监每天找我要数据，可麻烦了，果断嘿咻嘿咻搭建了公司管理后台，找了点模板再自己写写样式，虽然丑爆了但是顶用了，css+js都自己写，此时仍然未使用bootstrap之类的东西。</p>
+<h4 id="技术衍变之bootstrap"><a href="#技术衍变之bootstrap" class="headerlink" title="技术衍变之bootstrap"></a>技术衍变之bootstrap</h4><p>再之后公司要做官网，但是没前端，怎么办，我顶上。反正官网简单，4个页面，写写样式啥的，都不用后台，用2天写完了，但看着有点不舒服，手机看起来也会有各种问题，当时强迫症就上来了，去找响应式办法，还是想到了bootstrap，直接操刀子上。嘿咻嘿咻一天写完了，速度挺快，问题还少。从此之后一发不可收拾，重构公司管理后台，虽然还是丑丑的，但是起码是有正常三观的网站了，让自己舒心了不少。后面陆续使用这套方式写了后台的采购模块，微信商城等。</p>
+<h4 id="技术衍变之angularjs"><a href="#技术衍变之angularjs" class="headerlink" title="技术衍变之angularjs"></a>技术衍变之angularjs</h4><p>直到某一天感觉bootstrap好像写手机感觉一般，没有weui适合微信，然后是js的问题了，之前都用的php+twig/smarty 或者think自带的模板，可能因为和安卓前端配合多了，变得不咋喜欢服务器渲染这一套，说是前后端分离，但是不够彻底。<br>于是又开始琢磨起来，正值webapp概念较火，又值追书神器看书收费，网站各种小广告，便用angularjs+bootstrap做了个简单的看书软件（含自动采集指定书籍，目录，与阅读等基础功能）。</p>
+<h4 id="技术衍变之vue"><a href="#技术衍变之vue" class="headerlink" title="技术衍变之vue"></a>技术衍变之vue</h4><p>vue是在接触了angularjs后了解到的，作为一个轻型的前端框架，文档也挺齐全，又值公司需要搭建erp系统，在此不断纠结到底深入angular还是深入vue，选了vue，但当遇见问题的时候总是想着要不换回angular，但是最后客服了犹豫，用劲的啃了下去。又结合node+npm+webpack体系，最终还是做了一套东西出来，基础的坑基本踩好了。比如router需要在main.js进行注册这种问题也会坑上不少时间。</p>
 <p>一如既往的附上安装教程<a href="http://www.runoob.com/w3cnote/vue2-start-coding.html" title="http://www.runoob.com/w3cnote/vue2-start-coding.html" target="_blank" rel="external"><code>菜鸟教程</code></a>、<a href="https://cn.vuejs.org/v2/guide/installation.html" title="https://cn.vuejs.org/v2/guide/installation.html" target="_blank" rel="external"><code>官网教程</code></a></p>
-<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><h4 id="进入到自己的工程文件目录"><a href="#进入到自己的工程文件目录" class="headerlink" title="进入到自己的工程文件目录"></a>进入到自己的工程文件目录</h4><pre><code>vue init webpack-simple 工程名字&lt;工程名字不能用中文&gt;
-</code></pre><h4 id="或者创建-vue1-0-的项目"><a href="#或者创建-vue1-0-的项目" class="headerlink" title="或者创建 vue1.0 的项目"></a>或者创建 vue1.0 的项目</h4><pre><code>vue init webpack-simple#1.0 工程名字&lt;工程名字不能用中文&gt;
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><h4 id="进入到自己的工程文件目录"><a href="#进入到自己的工程文件目录" class="headerlink" title="进入到自己的工程文件目录"></a>进入到自己的工程文件目录</h4><pre><code># vue init webpack-simple 工程名字&lt;工程名字不能用中文&gt;
+</code></pre><h4 id="或者创建-vue1-0-的项目"><a href="#或者创建-vue1-0-的项目" class="headerlink" title="或者创建 vue1.0 的项目"></a>或者创建 vue1.0 的项目</h4><pre><code># vue init webpack-simple#1.0 工程名字&lt;工程名字不能用中文&gt;
 </code></pre><p>一路回车，Author写上你的大名</p>
-<h2 id="cd进入你的工程目录"><a href="#cd进入你的工程目录" class="headerlink" title="cd进入你的工程目录"></a>cd进入你的工程目录</h2><h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><pre><code>npm install
-</code></pre><h4 id="安装vue-router-路由系统，控制访问地址的-、vue-resource-用来数据请求"><a href="#安装vue-router-路由系统，控制访问地址的-、vue-resource-用来数据请求" class="headerlink" title="安装vue-router(路由系统，控制访问地址的)、vue-resource(用来数据请求)"></a>安装vue-router(路由系统，控制访问地址的)、vue-resource(用来数据请求)</h4><pre><code>cnpm install vue-router vue-resource --save
-</code></pre><h4 id="进入调试模式-一般会让你自动浏览诸如localhost-8081-之类的"><a href="#进入调试模式-一般会让你自动浏览诸如localhost-8081-之类的" class="headerlink" title="进入调试模式(一般会让你自动浏览诸如localhost:8081/**)之类的"></a>进入调试模式(一般会让你自动浏览诸如localhost:8081/**)之类的</h4><pre><code>npm run dev
-</code></pre><h4 id="安装饿了么的前端组件库"><a href="#安装饿了么的前端组件库" class="headerlink" title="安装饿了么的前端组件库"></a>安装饿了么的前端组件库</h4><pre><code>cnpm install element-ui@next -S
-</code></pre><h4 id="这几个是用来控制样式的，不然引入element后报错"><a href="#这几个是用来控制样式的，不然引入element后报错" class="headerlink" title="这几个是用来控制样式的，不然引入element后报错"></a>这几个是用来控制样式的，不然引入element后报错</h4><pre><code>cnpm install style-loader --save-dev
-cnpm install css-loader --save-dev
-cnpm install file-loader --save-dev
+<h2 id="cd进入你的工程目录"><a href="#cd进入你的工程目录" class="headerlink" title="cd进入你的工程目录"></a>cd进入你的工程目录</h2><h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><pre><code># npm install
+</code></pre><h4 id="安装vue-router-路由系统，控制访问地址的-、vue-resource-用来数据请求"><a href="#安装vue-router-路由系统，控制访问地址的-、vue-resource-用来数据请求" class="headerlink" title="安装vue-router(路由系统，控制访问地址的)、vue-resource(用来数据请求)"></a>安装vue-router(路由系统，控制访问地址的)、vue-resource(用来数据请求)</h4><pre><code># cnpm install vue-router vue-resource --save
+</code></pre><h4 id="进入调试模式-一般会让你自动浏览诸如localhost-8081-之类的"><a href="#进入调试模式-一般会让你自动浏览诸如localhost-8081-之类的" class="headerlink" title="进入调试模式(一般会让你自动浏览诸如localhost:8081/**)之类的"></a>进入调试模式(一般会让你自动浏览诸如localhost:8081/**)之类的</h4><pre><code># npm run dev
+</code></pre><h4 id="安装饿了么的前端组件库"><a href="#安装饿了么的前端组件库" class="headerlink" title="安装饿了么的前端组件库"></a>安装饿了么的前端组件库</h4><pre><code># cnpm install element-ui@next -S
+</code></pre><h4 id="这几个是用来控制样式的，不然引入element后报错"><a href="#这几个是用来控制样式的，不然引入element后报错" class="headerlink" title="这几个是用来控制样式的，不然引入element后报错"></a>这几个是用来控制样式的，不然引入element后报错</h4><pre><code># cnpm install style-loader --save-dev
+# cnpm install css-loader --save-dev
+# cnpm install file-loader --save-dev
 </code></pre><h4 id="几个报错"><a href="#几个报错" class="headerlink" title="几个报错"></a>几个报错</h4><ol>
 <li><p><code>[Vue warn]: Error when rendering component &lt;ElRow&gt;</code></p>
 <p> Vue 2.1.5 将 _h 重命名为 _c，而 Element 目前发的版本都是用以前的 compiler 编译的，导致新版 runtime无法运行Element。目前的解决方案是锁定 Vue 的版本为 2.1.4</p>
@@ -249,8 +257,32 @@ cnpm install file-loader --save-dev
 </li>
 <li><p><code>:class=&quot;***&quot;</code>，设置class</p>
 </li>
+<li><p>因为想用element-ui新版的表单展开那个功能，然后把vue升级到了2.1.10，享受npm带来的方便，其实报错的自己的update一下一般不会有太大问题。 - -下次需要注意新版本的发布，搞了半天功能不能用结果是版本问题。醉醉的。</p>
+</li>
+<li><p>vue外链方法，直接使用import的方式import入js，这个方法比较好</p>
+<p> import aa from “./component/jquery” 之类的<br> import bb from “./component/mqtt” </p>
+<p>局部使用的话可以封个组件</p>
+<p> <code>&lt;remote-js src=&quot;https://code.jquery.com/jquery-3.1.1.js&quot;&gt;&lt;/remote-js&gt;</code></p>
+<pre><code>components: {
+  &apos;remote-js&apos;: {
+    render(createElement) {
+      return createElement(&apos;script&apos;, { attrs: { type: &apos;text/javascript&apos;, src: this.src }});
+    },
+    props: {
+      src: { type: String, required: true },
+    },
+  },
+}
+</code></pre></li>
 </ol>
-
+<h2 id="乱入php开启GIZP压缩开启方式"><a href="#乱入php开启GIZP压缩开启方式" class="headerlink" title="乱入php开启GIZP压缩开启方式"></a>乱入php开启GIZP压缩开启方式</h2><pre><code>if( !headers_sent() &amp;&amp; // 如果页面头部信息还没有输出
+    extension_loaded(&quot;zlib&quot;) &amp;&amp; // 而且php已经加载了zlib扩展
+    strstr($_SERVER[&quot;HTTP_ACCEPT_ENCODING&quot;],&quot;gzip&quot;)) //而且浏览器接受GZIP
+{
+    ini_set(&apos;zlib.output_compression&apos;, &apos;On&apos;);
+    ini_set(&apos;zlib.output_compression_level&apos;, &apos;4&apos;);
+}
+</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
