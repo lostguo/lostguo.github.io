@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>《心理控制术》读后小结 | Wall&#39;s Blog</title>
+  <title>Laravel-第三节-视图 | Wall&#39;s Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -210,49 +210,54 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-12-26T13:44:15.000Z" itemprop="datePublished">
-          2016-12-26
+      <time datetime="2017-07-03T14:04:18.000Z" itemprop="datePublished">
+          2017-07-03
       </time>
     
     
     | 
-    <a href='/tags/life/'>life</a>,
+    <a href='/tags/php/'>php</a>,
     
-    <a href='/tags/other/'>other</a>
+    <a href='/tags/laravel/'>laravel</a>
     
     
 </span>
-                <h1>《心理控制术》读后小结</h1>
+                <h1>Laravel-第三节-视图</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>这篇文章用来记录一下《心理控制术》的一些我看重的点与问题。<br><a id="more"></a></p>
-<h3 id="关于专注力"><a href="#关于专注力" class="headerlink" title="关于专注力"></a>关于专注力</h3><p>书上说最好同时只做一件事，只对一件事专注，可怕的是，就在我决定写这篇文章的时候，我创建好文章标题后，当我准备开始写文章的时候，我找了一会电影，瞄了几眼微信，然后突然想起白天还未看完的知乎解答，投入的看了一会，可怕的习惯。</p>
-<h3 id="要让自己以成功的目标为准，不用担忧失败"><a href="#要让自己以成功的目标为准，不用担忧失败" class="headerlink" title="要让自己以成功的目标为准，不用担忧失败"></a>要让自己以成功的目标为准，不用担忧失败</h3><p>我觉得《心理控制术》这本书的核心在于修正自己的自我意向，以成功的自我意向为导向，让自己的自动成功机制运作起来，让自己变得比以前成功。不要因为害怕失败而一直的去担忧失败，这会形成导向失败的自我意向。</p>
-<h3 id="当硬币掷出，我应该只享受结果，而不用去担忧结果"><a href="#当硬币掷出，我应该只享受结果，而不用去担忧结果" class="headerlink" title="当硬币掷出，我应该只享受结果，而不用去担忧结果"></a>当硬币掷出，我应该只享受结果，而不用去担忧结果</h3><p>平常过度关注我代码可能产生的后果，对采用哪种代码一直犹疑，犹豫不决。而在写完代码测试完后，仍然会担心代码是否能成功运转、会不会出问题。</p>
-<p>我应该让自己干净利落，不去过多的担心这些，而应该把精力投入到下一步工作中。</p>
-<h3 id="有些事不想做咋办？"><a href="#有些事不想做咋办？" class="headerlink" title="有些事不想做咋办？"></a>有些事不想做咋办？</h3><p>理性很清晰的知道某件事的益处，但是因为一些原因你不愿意做这件事，那么应该自己进行评估，用理性来说话，不用纠结。一旦做出决定，完全抛弃对结果的牵挂和责任感。</p>
-<h3 id="如何合理应对工作生活中的骤然而忙，一大堆事？"><a href="#如何合理应对工作生活中的骤然而忙，一大堆事？" class="headerlink" title="如何合理应对工作生活中的骤然而忙，一大堆事？"></a>如何合理应对工作生活中的骤然而忙，一大堆事？</h3><p>不要认为自己是超人，可以边看手机边工作，边看电视边学习。一次只做一件事，把别的事一件件列出来做就可以。在我做某件事的时候，请至少保证不想的太远，每做一件事的时候心无旁骛。</p>
-<p>还要就是要平息自己迫不及待就去敲代码的坏习惯，尝试在脑海中演练，构建具体的步骤，每个步骤尽可能详细，思维殿堂哈哈。要想增加观察力，就要“减速”，就要在“所在地”停留更长时间。</p>
-<p>总之把好这个度，过犹不及。</p>
-<blockquote>
-<p>世上几乎没有天生的正确决定或错误决定。事实上，我们作出决定，然后想办法使他变得正确。</p>
-</blockquote>
-<p>很喜欢这句话，没有那么多正确或者错误的决定，而所有的决定都需要自己去想办法去变得正确。</p>
-<p>先写到这，书中还有更多的论点论证，需要多看几遍，让自己越来越强大。</p>
+      		<p>这一节主要记录一下对视图层的操作。<br><a id="more"></a></p>
+<h2 id="如何新建视图"><a href="#如何新建视图" class="headerlink" title="如何新建视图"></a>如何新建视图</h2><p><strong>视图位置</strong></p>
+<p>视图存放于<code>resources/views</code>。</p>
+<h2 id="怎样输出视图"><a href="#怎样输出视图" class="headerlink" title="怎样输出视图"></a>怎样输出视图</h2><p><strong>常规</strong></p>
+<p>我在<code>resources/views/Api</code>中建立了一个模板文件<code>api.blade.php</code></p>
+<pre><code>return view(&apos;Api.api&apos;);
+</code></pre><p><strong>带参数</strong></p>
+<pre><code>return view(&apos;Api.api&apos;,[&apos;name&apos;=&gt;&apos;jack&apos;]);
+</code></pre><p><strong>判断视图是否存在</strong></p>
+<pre><code>//必须use，不然会报错
+use Illuminate\Support\Facades\View;
+
+if (View::exists(&apos;Api.api&apos;)) {
+    return &quot;yes&quot;;
+}
+</code></pre><h2 id="如何共享数据给所有视图"><a href="#如何共享数据给所有视图" class="headerlink" title="如何共享数据给所有视图"></a>如何共享数据给所有视图</h2><p>在<code>app/Providers/AppServiceProvider.php</code>文件中</p>
+<pre><code>use Illuminate\Support\Facades\View;
+
+public function boot()
+{
+    View::share(&apos;account&apos;, &apos;pandagu&apos;);
+}
+</code></pre><h2 id="视图合成器"><a href="#视图合成器" class="headerlink" title="视图合成器"></a>视图合成器</h2><p><code>待续</code></p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2017/01/05/vue初体验/" style="float: left;">
-        ← 我的前端之路以及入坑vue
-    </a>
     
-    
-    <a class="pull-right" href="/2016/12/05/brew、nodejs、npm系列梳理/">
-        homebrew、nodejs、npm系列梳理 →
+    <a class="pull-right" href="/2017/07/03/Laravel-第二节-控制器/">
+        Laravel-第二节-控制器 →
     </a>
     
 </nav>
