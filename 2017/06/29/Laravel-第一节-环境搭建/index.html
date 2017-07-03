@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Laravel 第一节 环境搭建及路由使用 | Wall&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Wall's Blog">
+    <meta name="author" content="XingJie Cheng">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Wall&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/about/" class="animsition-link">about<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/android/" class="animsition-link">android<small>(0)</small></a></li>
+				    
+				    <li><a href="/categories/ios/" class="animsition-link">ios<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(7)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/php/" class="animsition-link">php<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/web/" class="animsition-link">web<small>(2)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.starpoetry.cn/" class="animsition-link">JohnnyLuv</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="https://lostguo.github.io/2016/09/20/about/" class="animsition-link" title="about">About</a></li>
+            <!--<li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>-->
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/my_logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Wall's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/lostguo" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-06-29T02:56:29.000Z" itemprop="datePublished">
+          2017-06-29
+      </time>
+    
+    
+    | 
+    <a href='/tags/php/'>php</a>,
+    
+    <a href='/tags/laravel/'>laravel</a>
+    
+    
+</span>
+                <h1>Laravel 第一节 环境搭建及路由使用</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>趁着这段时间，总结一下laravel。<br><a id="more"></a></p>
+<h2 id="5-4-laravel的环境要求"><a href="#5-4-laravel的环境要求" class="headerlink" title="5.4 laravel的环境要求"></a>5.4 laravel的环境要求</h2><pre><code>PHP &gt;= 5.6.4
+OpenSSL PHP Extension
+PDO PHP Extension
+Mbstring PHP Extension
+Tokenizer PHP Extension
+XML PHP Extension
+</code></pre><p><br></p>
+<h2 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h2><p><strong>使用 Composer 下载 Laravel 安装包</strong></p>
+<pre><code>composer global require &quot;laravel/installer&quot;
+</code></pre><p>需要你将 ~/.composer/vendor/bin 路径加到 PATH，只有这样系统才能找到 laravel 的执行文件。</p>
+<p>一旦安装完成，就可以使用 laravel new 命令在指定目录创建一个新的 Laravel 项目，例如：laravel new blog 将会在当前目录下创建一个叫 blog 的目录，此目录里面存放着新安装的 Laravel 和代码依赖。这个方法的安装速度比通过 Composer 安装要快上许多：</p>
+<pre><code>laravel new blog
+</code></pre><p>因为代码依赖是直接一起打包安装的。</p>
+<p><strong> 通过 Composer Create-Project</strong></p>
+<pre><code>composer create-project --prefer-dist laravel/laravel blog
+</code></pre><p><br>    </p>
+<h2 id="本地访问"><a href="#本地访问" class="headerlink" title="本地访问"></a>本地访问</h2><pre><code>php artisan serve
+</code></pre><p>这个字体好像好看</p>
+<pre><code>font-family: &apos;Raleway&apos;, sans-serif;
+</code></pre><p><br>    </p>
+<h2 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h2><p><strong>生成控制器</strong></p>
+<pre><code>php artisan make:controller Interface/InterfaceController --resource
+</code></pre><p><br></p>
+<h2 id="目录说明"><a href="#目录说明" class="headerlink" title="目录说明"></a>目录说明</h2><p>我们的业务代码基本都放在了app目录下</p>
+<p><br></p>
+<h2 id="采用正式配置"><a href="#采用正式配置" class="headerlink" title="采用正式配置"></a>采用正式配置</h2><p>修改nginx的root为laravel项目的public文件夹，并设置storage目录为777</p>
+<p><br></p>
+<h2 id="路由玩法"><a href="#路由玩法" class="headerlink" title="路由玩法"></a>路由玩法</h2><p>routes文件夹里设置路由，一般在routes文件夹web.php中设置。</p>
+<p><strong>1.请求方式</strong></p>
+<p>请求类型有如下：</p>
+<ul>
+<li>Route::get($uri, $callback);</li>
+<li>Route::post($uri, $callback);</li>
+<li>Route::put($uri, $callback);</li>
+<li>Route::patch($uri, $callback);</li>
+<li>Route::delete($uri, $callback);</li>
+<li>Route::options($uri, $callback);</li>
+</ul>
+<p><strong>2.普通get请求</strong></p>
+<pre><code>Route::get(&apos;user&apos;, function () {
+    return &quot;user-laravel&quot;;
+});
+</code></pre><p><strong>3.多种请求允许</strong></p>
+<pre><code>Route::match([&apos;get&apos;, &apos;post&apos;], &apos;user&apos;, function () {
+    return &quot;user-laravel&quot;;
+});
+
+//允许所有请求方式
+
+Route::any(&apos;user&apos;, function () {
+    return &quot;user-laravel&quot;;
+});
+</code></pre><p><strong>4.参数请求</strong></p>
+<pre><code>Route::get(&apos;user/{id}&apos;, function ($id) {
+    return &apos;user_id:&apos;.$id;
+});
+
+//多参数
+
+Route::get(&apos;user/{id}/comments/{comment}&apos;, function ($id, $commentID) {
+    return &apos;user_id:&apos;.$id.&apos;,comment_id:&apos;.$commentID;
+});
+
+//可选参数
+Route::get(&apos;user/{name?}&apos;, function ($name = null) {
+    return $name;
+});
+</code></pre><p><strong>5.正则约束</strong></p>
+<pre><code>Route::get(&apos;user/{name}&apos;, function ($name) {
+
+    return $name;
+
+})-&gt;where(&apos;name&apos;, &apos;[A-Za-z]+&apos;);
+
+//全局约束
+</code></pre><p>找不到匹配项会报错。</p>
+<p><strong>6.命名路由</strong><br>命名路由后，直接调用<code>route(&#39;profile&#39;)</code>，后续修改路由也不会影响调用，利于维护。</p>
+<pre><code>Route::get(&apos;user/profile&apos;, function () {
+    return route(&apos;profile&apos;);
+})-&gt;name(&apos;profile&apos;);
+
+//重定向，方法里执行
+return redirect()-&gt;route(&apos;profile&apos;);
+</code></pre><p>针对待参数的命名路由，需要进行如下调用：</p>
+<pre><code>Route::get(&apos;user/{id}/profile&apos;, function ($id) {
+
+})-&gt;name(&apos;profile&apos;);
+
+//如下使用 
+$url = route(&apos;profile&apos;, [&apos;id&apos; =&gt; 1]);
+</code></pre><p><strong>7.路由组</strong></p>
+<p>中间件路由 <code>待具体使用</code><br>要给路由组中定义的所有路由分配中间件，可以在路由组中使用 middleware 键，中间件将会依照列表内指定的顺序运行</p>
+<pre><code>Route::group([&apos;middleware&apos; =&gt; &apos;auth&apos;], function () {
+    Route::get(&apos;/&apos;, function ()    {
+        // 使用 `Auth` 中间件
+    });
+
+    Route::get(&apos;user/profile&apos;, function () {
+        // 使用 `Auth` 中间件
+    });
+});
+</code></pre><p>路由前缀 prefix 键可以给每个路由组中的路由加上指定的 URI 前缀</p>
+<pre><code>Route::group([&apos;prefix&apos; =&gt; &apos;demo&apos;], function () {
+    Route::get(&apos;/&apos;, function ()    {
+        return &apos;It is auth\&apos;s root &apos;;
+    });
+
+    Route::get(&apos;user/profile&apos;, function () {
+        return &apos;It is auth\&apos;s user/profile &apos;;
+    });
+});
+</code></pre><p>子域名路由 <code>待具体使用</code></p>
+<pre><code>Route::group([&apos;domain&apos; =&gt; &apos;{account}.myapp.com&apos;], function () {
+    Route::get(&apos;user/{id}&apos;, function ($account, $id) {
+        //
+    });
+});
+</code></pre><p>命名空间 <code>待具体使用</code></p>
+<pre><code>Route::group([&apos;namespace&apos; =&gt; &apos;Admin&apos;], function () {
+    // 在 &quot;App\Http\Controllers\Admin&quot; 命名空间下的控制器
+});
+这时使用 namespace 参数来指定组内所有控制器的公共命名空间
+</code></pre><p><strong>8.获取当前路由信息</strong></p>
+<pre><code>$route = Route::current();
+
+$name = Route::currentRouteName();
+
+$action = Route::currentRouteAction();
+</code></pre><p><br>    </p>
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><pre><code>php artisan route:cache
+</code></pre><p>运行这个命令之后，每一次请求的时候都将会加载缓存的路由文件。<br>记住，如果添加了新的路由，你需要刷新路由缓存。<br>因此，你应该只在项目部署时才运行 <code>route:cache</code> 命令</p>
+<p>你可以使用 route:clear 命令清除路由缓存：</p>
+<pre><code>php artisan route:clear
+</code></pre>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2017/07/03/php算法/" style="float: left;">
+        ← php算法
+    </a>
+    
+    
+    <a class="pull-right" href="/2017/06/29/Swift-Q-A/">
+        Swift Q&A →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo"></div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By XingJie Cheng. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/lostguo" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
