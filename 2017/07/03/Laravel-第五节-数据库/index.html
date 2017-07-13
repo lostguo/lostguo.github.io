@@ -124,15 +124,17 @@
 				    
 				    <li><a href="/blog/categories/ios/" class="animsition-link">ios<small>(1)</small></a></li>
 				    
-				    <li><a href="/blog/categories/laravel/" class="animsition-link">laravel<small>(5)</small></a></li>
+				    <li><a href="/blog/categories/laravel/" class="animsition-link">laravel<small>(7)</small></a></li>
 				    
 				    <li><a href="/blog/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
 				    
-				    <li><a href="/blog/categories/linux/" class="animsition-link">linux<small>(7)</small></a></li>
+				    <li><a href="/blog/categories/linux/" class="animsition-link">linux<small>(5)</small></a></li>
+				    
+				    <li><a href="/blog/categories/mac/" class="animsition-link">mac<small>(1)</small></a></li>
 				    
 				    <li><a href="/blog/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
 				    
-				    <li><a href="/blog/categories/php/" class="animsition-link">php<small>(1)</small></a></li>
+				    <li><a href="/blog/categories/php/" class="animsition-link">php<small>(2)</small></a></li>
 				    
 				    <li><a href="/blog/categories/web/" class="animsition-link">web<small>(2)</small></a></li>
 				    
@@ -274,7 +276,35 @@ php artisan config:clear
 <p>delete 方法用于删除已经存在于数据库的记录。</p>
 <pre><code>$num = DB::delete(&apos;delete from c_user&apos;);
 </code></pre><p>如同 update 一样，删除的行数将会被返回。</p>
+<p><strong>自增</strong></p>
+<pre><code>$num = DB::table(&apos;c_user&apos;)-&gt;increment(&apos;age&apos;);
+$num = DB::table(&apos;c_user&apos;)-&gt;increment(&apos;age&apos;,3);
+$num = DB::table(&apos;c_user&apos;)-&gt;decrement(&apos;age&apos;);
+$num = DB::table(&apos;c_user&apos;)-&gt;decrement(&apos;age&apos;,3);
+</code></pre><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>监听</strong></p>
+<p>在<code>app/Providers/AppServiceProvider.php</code>中进行监听设置</p>
+<pre><code>public function boot()
+{
+    DB::listen(function ($query) {
+       // $query-&gt;sql
+       // $query-&gt;bindings
+       // $query-&gt;time
+    });
+}
+</code></pre><p><strong>事务</strong></p>
+<pre><code>DB::transaction(function () {
+    DB::table(&apos;users&apos;)-&gt;update([&apos;votes&apos; =&gt; 1]);
 
+    DB::table(&apos;posts&apos;)-&gt;delete();
+});
+</code></pre><p><strong>手动操作事务</strong></p>
+<p>如果你想要手动开始一个事务的回滚和提交操作，你可以使用 DB facade 的  beginTransaction 方法。</p>
+<pre><code>DB::beginTransaction();
+</code></pre><p>你也可以通过 rollBack 方法来回滚事务：</p>
+<pre><code>DB::rollBack();
+</code></pre><p>最后，可以通过 commit 方法来提交这个事务：</p>
+<pre><code>DB::commit();
+</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>

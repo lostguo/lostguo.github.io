@@ -124,15 +124,17 @@
 				    
 				    <li><a href="/blog/categories/ios/" class="animsition-link">ios<small>(1)</small></a></li>
 				    
-				    <li><a href="/blog/categories/laravel/" class="animsition-link">laravel<small>(5)</small></a></li>
+				    <li><a href="/blog/categories/laravel/" class="animsition-link">laravel<small>(7)</small></a></li>
 				    
 				    <li><a href="/blog/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
 				    
-				    <li><a href="/blog/categories/linux/" class="animsition-link">linux<small>(7)</small></a></li>
+				    <li><a href="/blog/categories/linux/" class="animsition-link">linux<small>(5)</small></a></li>
+				    
+				    <li><a href="/blog/categories/mac/" class="animsition-link">mac<small>(1)</small></a></li>
 				    
 				    <li><a href="/blog/categories/other/" class="animsition-link">other<small>(1)</small></a></li>
 				    
-				    <li><a href="/blog/categories/php/" class="animsition-link">php<small>(1)</small></a></li>
+				    <li><a href="/blog/categories/php/" class="animsition-link">php<small>(2)</small></a></li>
 				    
 				    <li><a href="/blog/categories/web/" class="animsition-link">web<small>(2)</small></a></li>
 				    
@@ -243,11 +245,33 @@ class Api extends Model{
     }
 }
 </code></pre><p><br></p>
-<h2 id="如何调用"><a href="#如何调用" class="headerlink" title="如何调用"></a>如何调用</h2><pre><code>//必须use一下，不然无法使用
-use App\Api;
+<h2 id="如何调用"><a href="#如何调用" class="headerlink" title="如何调用"></a>如何调用</h2><p>必须use一下，不然无法使用</p>
+<pre><code>use App\Api;
 
 public function showApi(){
     return Api::getApi();
+}
+</code></pre><h2 id="关联表"><a href="#关联表" class="headerlink" title="关联表"></a>关联表</h2><p>我的model，并指定了表和主键(默认<code>id</code>)</p>
+<pre><code>namespace App\model;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    protected $table = &apos;c_user&apos;;
+    protected $primaryKey = &apos;userID&apos;;
+}
+</code></pre><p>调用</p>
+<pre><code>use App\model\User;
+
+class UserController extends Controller
+{
+    public function register()
+    {
+        $user = User::all();
+        dd($user);
+        return &apos;&apos;;
+    }
 }
 </code></pre>
             <div class="clearfix"></div>
