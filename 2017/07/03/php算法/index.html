@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/03/php算法/index.html">
 <meta property="og:site_name" content="Wall's Blog">
 <meta property="og:description" content="算法前台不可见，却对后台影响深远，在平时就可以积极的积累起来了。">
-<meta property="og:updated_time" content="2017-07-03T08:28:59.000Z">
+<meta property="og:updated_time" content="2017-07-19T00:10:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php算法">
 <meta name="twitter:description" content="算法前台不可见，却对后台影响深远，在平时就可以积极的积累起来了。">
@@ -246,6 +246,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -377,7 +387,36 @@
 <p><strong>其他要点</strong></p>
 <p>算法分为最佳情况，最差情况和平均情况，一般主要考虑最差情况。</p>
 <p><br></p>
-<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h2 id="图算法"><a href="#图算法" class="headerlink" title="图算法"></a>图算法</h2><h2 id="算法设计"><a href="#算法设计" class="headerlink" title="算法设计"></a>算法设计</h2><h2 id="字符串匹配"><a href="#字符串匹配" class="headerlink" title="字符串匹配"></a>字符串匹配</h2><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p><code>待续</code></p>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><pre><code>&lt;?php
+    function quick_sort($array) {
+      if (count($array) &lt;= 1) return $array;
+      $key = $array[0];
+      $left_arr = array();
+      $right_arr = array();
+      for ($i=1; $i&lt;count($array); $i++){
+      if ($array[$i] &lt;= $key)
+        $left_arr[] = $array[$i];
+      else
+        $right_arr[] = $array[$i];
+      }
+      $left_arr = quick_sort($left_arr);
+      $right_arr = quick_sort($right_arr);
+      return array_merge($left_arr, array($key), $right_arr);
+    }
+</code></pre><h3 id="二分排序"><a href="#二分排序" class="headerlink" title="二分排序"></a>二分排序</h3><pre><code>function bin_sch($array, $low, $high, $k){
+  if ($low &lt;= $high){
+    $mid = intval(($low+$high)/2);
+    if ($array[$mid] == $k){
+      return $mid;
+    }elseif ($k &lt; $array[$mid]){
+    return bin_sch($array, $low, $mid-1, $k);
+  }else{
+    return bin_sch($array, $mid+1, $high, $k);
+  }
+  }
+  return -1;
+}
+</code></pre><h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h2 id="图算法"><a href="#图算法" class="headerlink" title="图算法"></a>图算法</h2><h2 id="算法设计"><a href="#算法设计" class="headerlink" title="算法设计"></a>算法设计</h2><h2 id="字符串匹配"><a href="#字符串匹配" class="headerlink" title="字符串匹配"></a>字符串匹配</h2><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p><code>待续</code></p>
 
       
     </div>
@@ -507,7 +546,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -518,7 +557,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -529,7 +568,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -589,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题、算法和程序"><span class="nav-number">1.</span> <span class="nav-text">问题、算法和程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">2.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-number">4.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图算法"><span class="nav-number">5.</span> <span class="nav-text">图算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法设计"><span class="nav-number">6.</span> <span class="nav-text">算法设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串匹配"><span class="nav-number">7.</span> <span class="nav-text">字符串匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">8.</span> <span class="nav-text">索引</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题、算法和程序"><span class="nav-number">1.</span> <span class="nav-text">问题、算法和程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">2.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">3.1.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分排序"><span class="nav-number">3.2.</span> <span class="nav-text">二分排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-number">4.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图算法"><span class="nav-number">5.</span> <span class="nav-text">图算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法设计"><span class="nav-number">6.</span> <span class="nav-text">算法设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串匹配"><span class="nav-number">7.</span> <span class="nav-text">字符串匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">8.</span> <span class="nav-text">索引</span></a></li></ol></div>
             
 
           </div>
@@ -611,7 +650,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2016 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
